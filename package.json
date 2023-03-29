@@ -9,7 +9,9 @@
     "start": "react-native start",
     "test": "jest",
     "xcode": "xed -b ios",
-    "pods": "cd ./ios && pod install"
+    "pods": "cd ./ios && pod install",
+    "android:run:dev": "react-native run-android --variant=DevDebug",
+    "clean": "cd android && ./gradlew clean"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.0",
@@ -17,6 +19,8 @@
     "@react-navigation/native-stack": "^6.9.12",
     "react": "18.2.0",
     "react-native": "0.71.4",
+    "react-native-config": "^1.5.0",
+    "react-native-device-info": "^10.5.0",
     "react-native-safe-area-context": "^4.5.0",
     "react-native-screens": "^3.20.0",
     "react-persist": "^1.0.2",
