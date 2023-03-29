@@ -32,7 +32,7 @@ const $http = axios.create({
   headers: {
     'Content-Type': 'application/json',
     offset: `${new Date().getTimezoneOffset()}`,
-    basicauth: `basic Zml2ZXN0YXI6WHp5cyV7Sk5edzlBc0M=`,
+    // basicauth: `basic Zml2ZXN0YXI6WHp5cyV7Sk5edzlBc0M=`,
   },
 });
 
