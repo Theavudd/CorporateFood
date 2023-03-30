@@ -10,7 +10,6 @@ import {
 import SplashScreen from '../modules/splash';
 import ScreenNames from './screenNames';
 import {useColorScheme} from 'react-native';
-import Home from '../modules/home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import WelcomeScreen from '../modules/welcome';
 
