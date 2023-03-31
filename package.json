@@ -10,7 +10,7 @@
     "test": "jest",
     "xcode": "xed -b ios",
     "pods": "cd ./ios && pod install",
-    "android:run:dev": "react-native run-android --variant=DevDebug",
+    "android:run:dev": "react-native run-android --mode=DevDebug",
     "clean": "cd android && ./gradlew clean"
   },
   "dependencies": {

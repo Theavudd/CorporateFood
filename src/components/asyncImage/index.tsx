@@ -8,7 +8,7 @@ interface Props {
   isSmallImg?: boolean;
   localImage?: ImageProps['source'];
   extraContainerStyle?: ViewProps['style'];
-  uri: ImageProps['source'] | FastImageProps['source'];
+  uri?: ImageProps['source'] | FastImageProps['source'];
   extraImgStyle?: ImageProps['style'] & FastImageProps['style'];
   resizeMode?: ImageProps['resizeMode'] & FastImageProps['resizeMode'];
   [key: string]: any;
