@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "664626427524",
+    "project_id": "corporatefood-9bd59",
+    "storage_bucket": "corporatefood-9bd59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664626427524:android:d933c46d2d8dc9a215f4d1",
+        "android_client_info": {
+          "package_name": "com.corporatefood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664626427524-1cjucuqp08jv0bh6eq99b2a83qvn1210.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwv6SktP9NKKN9OMIYbuy96toJ8wRw2jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664626427524-1cjucuqp08jv0bh6eq99b2a83qvn1210.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "664626427524-fpaqjk942t3osjgiibiru7l7rspr1gl0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.CorporateFood"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
