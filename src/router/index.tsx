@@ -12,6 +12,7 @@ import ScreenNames from './screenNames';
 import {useColorScheme} from 'react-native';
 import Home from '../modules/home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import WelcomeScreen from '../modules/welcome';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {headerShown: false};
@@ -27,6 +28,7 @@ function Router() {
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : Mytheme}>
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name={ScreenNames.SPLASH} component={SplashScreen} />
+        <Stack.Screen name={ScreenNames.WELCOME} component={WelcomeScreen} />
         <Stack.Screen name={ScreenNames.BOTTOM} component={BottomTabNav} />
       </Stack.Navigator>
     </NavigationContainer>
