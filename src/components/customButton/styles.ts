@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {colors} from '../../utils/colors';
 import {vh, vw} from '../../utils/dimensions';
-import {FontFamily} from '../../utils/fonts';
+import Fonts from '../../utils/fonts';
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   text: {
-    fontFamily: FontFamily.Regular,
+    fontFamily: Fonts.Regular,
     fontSize: vw(15),
     color: colors.white,
   },
