@@ -1,14 +1,14 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
+  View,
   Image,
+  TextInput,
+  ViewProps,
   ImageProps,
   StyleSheet,
-  TextInput,
   TextInputProps,
   TouchableOpacity,
   TouchableOpacityProps,
-  View,
-  ViewProps,
 } from 'react-native';
 import {normalize, vh, vw} from '../../utils/dimensions';
 
@@ -17,7 +17,6 @@ export interface CustomInputPropsType {
   focusColor?: string;
   borderWidth?: number;
   notFocussedColor?: string;
-  value: string | undefined;
   takeIconsInsideBorder?: boolean;
   leftIcon?: ImageProps['source'];
   rightIcon?: ImageProps['source'];
@@ -27,6 +26,7 @@ export interface CustomInputPropsType {
   editable?: TextInputProps['editable'];
   customInputStyle?: ViewProps['style'];
   multiline?: TextInputProps['multiline'];
+  value: TextInputProps['value'] | undefined;
   HideCarret?: TextInputProps['caretHidden'];
   placeholder?: TextInputProps['placeholder'];
   autoCorrect?: TextInputProps['autoCorrect'];
@@ -74,8 +74,8 @@ const CustomInput = React.forwardRef(
       leftIconActiveOpacity = 1,
       rightIconActiveOpacity = 1,
       notFocussedColor = '#000000',
-      takeIconsInsideBorder = false,
       resizeMethodLeftIcon = 'auto',
+      takeIconsInsideBorder = false,
       resizeModeLeftIcon = 'contain',
       resizeMethodRightIcon = 'auto',
       resizeModeRightIcon = 'contain',
