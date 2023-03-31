@@ -43,7 +43,7 @@ export default function CustomButton({
       style={[styles.container, containerStyle]}>
       {leftImage && (
         <AsyncImage
-          localImage={Images.password}
+          localImage={leftImage}
           resizeMode={'contain'}
           extra={extraLeftImageStyle}
           extraContainerStyle={extraLeftImageContainerStyle}
@@ -52,7 +52,7 @@ export default function CustomButton({
       {buttonText && <Text style={[styles.text, textStyle]}>{buttonText}</Text>}
       {rightImage && (
         <AsyncImage
-          localImage={Images.password}
+          localImage={rightImage}
           resizeMode={'contain'}
           extraImageStyle={extraRightImageStyle}
           extraContainerStyle={extraRightImageContainerStyle}

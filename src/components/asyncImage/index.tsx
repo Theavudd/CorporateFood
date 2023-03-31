@@ -41,6 +41,7 @@ export default function AsyncImage({
           resizeMethod="resize"
           resizeMode={resizeMode}
           style={[styles.imgStyle, extraImgStyle]}
+          {...rest}
         />
       );
     }
@@ -50,6 +51,7 @@ export default function AsyncImage({
         resizeMode={resizeMode}
         source={{uri: imgUrl}}
         style={[styles.imgStyle, extraImgStyle]}
+        {...rest}
       />
     );
   };
@@ -59,6 +61,7 @@ export default function AsyncImage({
       style={[
         isSmallImg ? styles.smallCon : styles.bigCon,
         extraContainerStyle,
+        {...rest},
       ]}>
       {renderImage()}
     </View>

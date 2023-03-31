@@ -16,4 +16,6 @@ export const colors = {
   grayLight: '#A8ACB9',
   grayLight1: '#C4C7D0',
   grayLight2: '#EBEBEB',
+  textGray: '#9796A1',
+  borderBlack: '#EEEEEE',
 };

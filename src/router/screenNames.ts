@@ -3,5 +3,6 @@ const ScreenNames = {
   HOME: 'Home',
   BOTTOM: 'BottomTab',
   WELCOME: 'WelcomeScreen',
+  LOGIN: 'Login',
 };
 export default ScreenNames;
