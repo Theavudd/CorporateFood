@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Sofia Pro Regular.ttf",
+      "sha1": "c6bcd1512c419900a4a0b848fe8c98c665ee1529"
+    },
+    {
+      "path": "src/assets/fonts/Sofia Pro SemiBold Italic.ttf",
+      "sha1": "c63d948c75581a99f20c3adf8f3ea410cac6248e"
+    },
+    {
+      "path": "src/assets/fonts/Sofia Pro SemiBold.ttf",
+      "sha1": "65322c8627de4fa6c370ed26f4466d3ab0942ff0"
+    },
+    {
+      "path": "src/assets/fonts/Sofia Pro UltraLight Italic.ttf",
+      "sha1": "fe6eceba09feda37a7ff0b0d38fa175bb3fcad88"
+    }
+  ]
+}

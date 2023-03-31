@@ -16,7 +16,7 @@ interface Props {
 
 export default function AsyncImage({
   uri,
-  localImage,
+  localImage = {uri: ''},
   isSmallImg = true,
   extraImgStyle = {},
   resizeMode = 'cover',
@@ -34,7 +34,7 @@ export default function AsyncImage({
   };
 
   const renderImage = () => {
-    if (isError || localImage) {
+    if (isError || JSON.stringify(localImage) !== JSON.stringify({uri: ''})) {
       return (
         <Image
           source={localImage}

@@ -39,8 +39,8 @@ export interface CustomInputPropsType {
   onLeftIconPress?: TouchableOpacityProps['onPress'];
   onRightIconPress?: TouchableOpacityProps['onPress'];
   secureTextInput?: TextInputProps['secureTextEntry'];
-  leftIconConatinerStyle: TouchableOpacityProps['style'];
-  rightIconContainerStyle: TouchableOpacityProps['style'];
+  leftIconConatinerStyle?: TouchableOpacityProps['style'];
+  rightIconContainerStyle?: TouchableOpacityProps['style'];
   leftIconActiveOpacity?: TouchableOpacityProps['activeOpacity'];
   rightIconActiveOpacity?: TouchableOpacityProps['activeOpacity'];
   [key: string]: any;
