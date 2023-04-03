@@ -14,5 +14,4 @@ export default {
   emailPlaceHolder: 'Your email or phone',
   dontHaveAccount: 'Don’t have an account? ',
   alreadyHaveAccount: 'Already have an account? ',
-  loginWithEmail: 'Login with Email',
 };
