@@ -85,7 +85,7 @@ export default function SignUp() {
         <CustomInput
           value={email}
           setText={setEmailState}
-          placeholder={string.emailPlaceHolder}
+          placeholder={string.email}
           borderWidth={0.5}
           customInputStyle={styles.inputContainerStyle}
           focusColor={colors.orange}
@@ -112,7 +112,7 @@ export default function SignUp() {
           focusColor={colors.orange}
           notFocussedColor={colors.grayLight1}
           secureTextInput={showPassword}
-          maximumLength={14}
+          maximumLength={16}
         />
       </View>
     );

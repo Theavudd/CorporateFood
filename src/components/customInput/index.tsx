@@ -28,6 +28,7 @@ export interface CustomInputPropsType {
   containerStyle?: ViewProps['style'];
   rightIconStyle?: ImageProps['style'];
   customInputStyle?: ViewProps['style'];
+  autoCorrect?: TextInputProps['spellCheck'];
   value: TextInputProps['value'] | undefined;
   placeholder?: TextInputProps['placeholder'];
   maximumLength?: TextInputProps['maxLength'];
@@ -50,6 +51,7 @@ const CustomInput = React.forwardRef(
       setText,
       leftIcon,
       rightIcon,
+      autoCorrect = false,
       placeholder,
       keyboardType,
       leftIconStyle,
@@ -116,6 +118,8 @@ const CustomInput = React.forwardRef(
           onBlur={setFocusedFunction}
           onFocus={setFocusedFunction}
           secureTextEntry={secureTextInput}
+          autoCorrect={autoCorrect}
+          autoCapitalize="none"
           onChangeText={text => {
             setText(text);
           }}
