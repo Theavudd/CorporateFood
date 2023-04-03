@@ -11,8 +11,8 @@ export default {
   signInWith: 'Sign in with',
   loginWithEmail: 'Login with Email',
   forgotPassword: 'Forgot password?',
+  loginWithEmail: 'Login with Email',
   emailPlaceHolder: 'Your email or phone',
   dontHaveAccount: 'Don’t have an account? ',
   alreadyHaveAccount: 'Already have an account? ',
-  loginWithEmail: 'Login with Email',
 };
