@@ -31,7 +31,7 @@ const Login = () => {
     setEmail(value);
   }, []);
 
-  const emailComponent = React.useCallback(() => {
+  const emailComponent = () => {
     return (
       <View>
         <Text style={styles.inputName}>{string.email}</Text>
@@ -46,7 +46,7 @@ const Login = () => {
         />
       </View>
     );
-  }, [email]);
+  };
 
   const setPasswordState = React.useCallback((value: string) => {
     setPassword(value);
@@ -56,7 +56,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   }, [showPassword]);
 
-  const passwordComponent = React.useCallback(() => {
+  const passwordComponent = () => {
     return (
       <View>
         <Text style={styles.inputName}>{string.password}</Text>
@@ -77,7 +77,7 @@ const Login = () => {
         />
       </View>
     );
-  }, [password, showPassword]);
+  };
 
   const socialSignInComponent = React.useCallback(() => {
     return (
