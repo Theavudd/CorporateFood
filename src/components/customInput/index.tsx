@@ -150,7 +150,7 @@ const CustomInput = React.forwardRef(
   },
 );
 
-export default CustomInput;
+export default React.memo(CustomInput);
 
 const styles = StyleSheet.create({
   mainView: {

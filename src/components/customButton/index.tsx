@@ -24,7 +24,7 @@ interface Props {
   extraRightImageContainerStyle?: ViewStyle;
 }
 
-export default function CustomButton({
+function CustomButton({
   buttonText,
   leftImage,
   rightImage,
@@ -61,3 +61,5 @@ export default function CustomButton({
     </TouchableOpacity>
   );
 }
+
+export default React.memo(CustomButton);

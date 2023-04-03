@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  SafeAreaView,
-  StyleSheet,
-  ImageBackground,
-} from 'react-native';
+import {Text, View, SafeAreaView, ImageBackground} from 'react-native';
 import CustomButton from '../../../components/customButton';
 import CustomInput from '../../../components/customInput';
 import HeaderComponent from '../../../components/headerComponent';
@@ -25,22 +19,25 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const onPressSignUp = () => {
+  const onPressSignUp = React.useCallback(() => {
     navigation.navigate(ScreenNames.SIGNUP);
-  };
-  const arrowPress = () => {
-    navigation.navigate(ScreenNames.WELCOME);
-  };
+  }, []);
 
-  const emailComponent = () => {
+  const arrowPress = React.useCallback(() => {
+    navigation.navigate(ScreenNames.WELCOME);
+  }, []);
+
+  const setEmailState = React.useCallback((value: string) => {
+    setEmail(value);
+  }, []);
+
+  const emailComponent = React.useCallback(() => {
     return (
       <View>
         <Text style={styles.inputName}>{string.email}</Text>
         <CustomInput
           value={email}
-          setText={(value: string) => {
-            setEmail(value);
-          }}
+          setText={setEmailState}
           placeholder={string.emailPlaceHolder}
           borderWidth={0.5}
           customInputStyle={styles.inputContainerStyle}
@@ -49,25 +46,29 @@ const Login = () => {
         />
       </View>
     );
-  };
+  }, [email]);
 
-  const passwordComponent = () => {
+  const setPasswordState = React.useCallback((value: string) => {
+    setPassword(value);
+  }, []);
+
+  const onEyePress = React.useCallback(() => {
+    setShowPassword(!showPassword);
+  }, [showPassword]);
+
+  const passwordComponent = React.useCallback(() => {
     return (
       <View>
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}
-          setText={(value: string) => {
-            setPassword(value);
-          }}
+          setText={setPasswordState}
           placeholder={string.password}
           borderWidth={0.5}
           rightIcon={showPassword ? image.password : image.hidePassword}
           rightIconContainerStyle={styles.eyeContainer}
           rightIconStyle={styles.eyeImage}
-          onRightIconPress={() => {
-            setShowPassword(!showPassword);
-          }}
+          onRightIconPress={onEyePress}
           takeIconsInsideBorder
           containerStyle={styles.inputContainerStyle}
           focusColor={colors.orange}
@@ -76,9 +77,9 @@ const Login = () => {
         />
       </View>
     );
-  };
+  }, [password, showPassword]);
 
-  const socialSignInComponent = () => {
+  const socialSignInComponent = React.useCallback(() => {
     return (
       <View>
         <View style={styles.socialSignInView}>
@@ -100,7 +101,7 @@ const Login = () => {
         />
       </View>
     );
-  };
+  }, []);
 
   const screenComponents = () => {
     return (
