@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import {Text, View, SafeAreaView, ImageBackground} from 'react-native';
-import CustomButton from '../../../components/customButton';
-import CustomInput from '../../../components/customInput';
-import HeaderComponent from '../../../components/headerComponent';
-import HideKeyboard from '../../../components/hideKeyboard';
-import {colors} from '../../../utils/colors';
-import {vh, vw} from '../../../utils/dimensions';
-import fonts from '../../../utils/fonts';
-import image from '../../../utils/image';
-import string from '../../../utils/string';
 import {styles} from './styles';
+import React, {useState} from 'react';
+import fonts from '@corporateFoods/utils/fonts';
+import image from '@corporateFoods/utils/image';
+import string from '@corporateFoods/utils/string';
+import {vw} from '@corporateFoods/utils/dimensions';
+import {colors} from '@corporateFoods/utils/colors';
 import {useNavigation} from '@react-navigation/native';
-import ScreenNames from '../../../router/screenNames';
+import ScreenNames from '@corporateFoods/router/screenNames';
+import CustomInput from '@corporateFoods/components/customInput';
+import CustomButton from '@corporateFoods/components/customButton';
+import HideKeyboard from '@corporateFoods/components/hideKeyboard';
+import {Text, View, SafeAreaView, ImageBackground} from 'react-native';
+import HeaderComponent from '@corporateFoods/components/headerComponent';
 
 const Login = () => {
   const navigation = useNavigation<any>();

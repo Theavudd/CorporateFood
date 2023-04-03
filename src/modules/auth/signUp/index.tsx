@@ -1,16 +1,15 @@
-import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
-import HideKeyboard from '../../../components/hideKeyboard';
-import image from '../../../utils/image';
 import styles from './styles';
-import HeaderComponent from '../../../components/headerComponent';
-import string from '../../../utils/string';
-import CustomInput from '../../../components/customInput';
-import {useState} from 'react';
-import {colors} from '../../../utils/colors';
-import CustomButton from '../../../components/customButton';
-import ScreenNames from '../../../router/screenNames';
+import React, {useState} from 'react';
+import image from '@corporateFoods/utils/image';
+import string from '@corporateFoods/utils/string';
+import {colors} from '@corporateFoods/utils/colors';
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import ScreenNames from '@corporateFoods/router/screenNames';
+import CustomInput from '@corporateFoods/components/customInput';
+import CustomButton from '@corporateFoods/components/customButton';
+import HideKeyboard from '@corporateFoods/components/hideKeyboard';
+import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
+import HeaderComponent from '@corporateFoods/components/headerComponent';
 
 export default function SignUp() {
   const [name, setName] = useState('');

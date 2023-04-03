@@ -11,8 +11,7 @@ import {
   TouchableOpacityProps,
   ViewStyle,
 } from 'react-native';
-import {normalize, vh, vw} from '../../utils/dimensions';
-import image from '../../utils/image';
+import {normalize, vh, vw} from '@corporateFoods/utils/dimensions';
 
 export interface CustomInputPropsType {
   setText: Function;
