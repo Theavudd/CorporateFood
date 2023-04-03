@@ -17,8 +17,8 @@ interface Props {
   extraContainerStyle?: ViewStyle;
   leftImage?: ImageProps['source'];
   rightImage?: ImageProps['source'];
-  onLeftButtonPress?: Function;
-  onRightButtonPress?: Function;
+  onLeftButtonPress?: () => void;
+  onRightButtonPress?: () => void;
   leftContainerStyle?: ViewStyle;
   rightContainerStyle?: ViewStyle;
   leftImageContainerStyle?: ViewStyle;
@@ -52,7 +52,7 @@ export default function HeaderComponent(props: Props) {
       {rightImage && (
         <CustomButton
           onPress={onRightButtonPress}
-          localImage={rightImage}
+          leftImage={rightImage}
           containerStyle={rightContainerStyle}
           extraLeftImageContainerStyle={rightImageContainerStyle}
         />

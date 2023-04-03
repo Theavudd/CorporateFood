@@ -108,14 +108,9 @@ const Login = () => {
       <View style={styles.mainView}>
         <HeaderComponent
           leftImage={image.back}
-          leftContainerStyle={{
-            backgroundColor: 'white',
-            marginHorizontal: 0,
-            height: vh(38),
-            borderRadius: vw(10),
-          }}
+          leftContainerStyle={styles.headerButtonContainer}
           onLeftButtonPress={arrowPress}
-          leftImageContainerStyle={{height: '40%'}}
+          leftImageContainerStyle={styles.headerLeftImageStyle}
         />
         <Text style={styles.login}>{string.login}</Text>
         {emailComponent()}

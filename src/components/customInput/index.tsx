@@ -78,8 +78,6 @@ const CustomInput = React.forwardRef(
 
     const [focused, setFocused] = useState(false);
 
-    console.log(placeholder);
-
     const setFocusedFunction = () => {
       setFocused(!focused);
     };

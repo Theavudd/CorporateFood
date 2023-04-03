@@ -8,12 +8,16 @@ import CustomInput from '../../../components/customInput';
 import {useState} from 'react';
 import {colors} from '../../../utils/colors';
 import CustomButton from '../../../components/customButton';
+import ScreenNames from '../../../router/screenNames';
+import {useNavigation} from '@react-navigation/native';
+import React from 'react';
 
 export default function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
+  const navigation: any = useNavigation();
 
   const onPressSignIn = () => {};
 
@@ -101,9 +105,20 @@ export default function SignUp() {
       </View>
     );
   };
+
+  const arrowPress = React.useCallback(() => {
+    navigation.navigate(ScreenNames.WELCOME);
+  }, []);
+
   const screenComponents = () => {
     return (
       <View style={styles.mainView}>
+        <HeaderComponent
+          leftImage={image.back}
+          leftContainerStyle={styles.headerButtonContainer}
+          onLeftButtonPress={arrowPress}
+          leftImageContainerStyle={styles.headerLeftImageStyle}
+        />
         <Text style={styles.signUp}>{string.signUp}</Text>
         {fullNameComponent()}
         {emailComponent()}

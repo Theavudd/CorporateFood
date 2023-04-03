@@ -72,4 +72,11 @@ export const styles = StyleSheet.create({
   buttonText: {
     fontFamily: fonts.SemiBold,
   },
+  headerButtonContainer: {
+    backgroundColor: 'white',
+    marginHorizontal: 0,
+    height: vh(38),
+    borderRadius: vw(10),
+  },
+  headerLeftImageStyle: {height: '40%'},
 });
