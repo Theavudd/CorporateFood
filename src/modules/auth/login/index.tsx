@@ -135,7 +135,10 @@ const Login = () => {
     );
   };
   return (
-    <ImageBackground style={{flex: 1}} source={image.backgroundWrapper}>
+    <ImageBackground
+      style={styles.container}
+      source={image.backgroundWrapper}
+      resizeMode={'stretch'}>
       <SafeAreaView style={styles.safeView}>
         <HideKeyboard>{screenComponents()}</HideKeyboard>
       </SafeAreaView>

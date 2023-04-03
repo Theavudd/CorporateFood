@@ -1,9 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {colors} from '../../../utils/colors';
 import {vw, vh} from '../../../utils/dimensions';
 import fonts from '../../../utils/fonts';
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   inputName: {
     color: colors.textGray,
     fontSize: vw(16),
@@ -36,7 +39,7 @@ export const styles = StyleSheet.create({
   login: {
     fontSize: vw(36),
     fontFamily: fonts.SemiBold,
-    color:colors.blackDark
+    color: colors.blackDark,
   },
   signUp: {
     fontSize: vw(14),
@@ -45,7 +48,7 @@ export const styles = StyleSheet.create({
   dontHaveAccount: {
     alignSelf: 'center',
     fontFamily: fonts.Regular,
-    color:colors.blackDark
+    color: colors.blackDark,
   },
   buttonContainerStyle: {
     marginHorizontal: vw(20),

@@ -10,4 +10,5 @@ export default {
   signInWith: 'Sign in with',
   google: 'GOOGLE',
   LOGIN: 'LOGIN',
+  loginWithEmail: 'Login with Email',
 };
