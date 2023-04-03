@@ -20,7 +20,7 @@ export default function SplashScreen() {
 
   return (
     <View style={styles.mainView}>
-      <StatusBar hidden />
+      {/* <StatusBar hidden /> */}
       <Lottie
         loop={false}
         autoPlay

@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
   login: {
     fontSize: vw(36),
     fontFamily: fonts.SemiBold,
+    color:colors.blackDark
   },
   signUp: {
     fontSize: vw(14),
@@ -44,6 +45,7 @@ export const styles = StyleSheet.create({
   dontHaveAccount: {
     alignSelf: 'center',
     fontFamily: fonts.Regular,
+    color:colors.blackDark
   },
   buttonContainerStyle: {
     marginHorizontal: vw(20),

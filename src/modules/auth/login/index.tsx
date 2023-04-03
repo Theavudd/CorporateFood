@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {Text, View, SafeAreaView, StyleSheet} from 'react-native';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
 import CustomButton from '../../../components/customButton';
 import CustomInput from '../../../components/customInput';
 import HeaderComponent from '../../../components/headerComponent';
@@ -10,13 +16,19 @@ import fonts from '../../../utils/fonts';
 import image from '../../../utils/image';
 import string from '../../../utils/string';
 import {styles} from './styles';
+import {useNavigation} from '@react-navigation/native';
+import ScreenNames from '../../../router/screenNames';
 
 const Login = () => {
+  const navigation = useNavigation<any>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const onPressLogin = () => {};
+  const arrowPress = () => {
+    navigation.navigate(ScreenNames.WELCOME);
+  };
 
   const emailComponent = () => {
     return (
@@ -99,7 +111,7 @@ const Login = () => {
             height: vh(38),
             borderRadius: vw(10),
           }}
-          onLeftButtonPress={() => {}}
+          onLeftButtonPress={arrowPress}
           leftImageContainerStyle={{height: '40%'}}
         />
         <Text style={styles.login}>{string.login}</Text>
@@ -123,9 +135,11 @@ const Login = () => {
     );
   };
   return (
-    <SafeAreaView style={styles.safeView}>
-      <HideKeyboard>{screenComponents()}</HideKeyboard>
-    </SafeAreaView>
+    <ImageBackground style={{flex: 1}} source={image.backgroundWrapper}>
+      <SafeAreaView style={styles.safeView}>
+        <HideKeyboard>{screenComponents()}</HideKeyboard>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 export default Login;
