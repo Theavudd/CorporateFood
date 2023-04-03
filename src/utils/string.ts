@@ -6,9 +6,12 @@ export default {
   forgotPassword: 'Forgot password?',
   alreadyHaveAccount: 'Already have an account? ',
   dontHaveAccount: 'Don’t have an account? ',
-  signUp: 'SignUp',
+  signUp: 'Sign Up',
+  signUpWith: 'Sign up with',
   signInWith: 'Sign in with',
   google: 'GOOGLE',
   LOGIN: 'LOGIN',
   loginWithEmail: 'Login with Email',
+  fullName: 'Full Name',
+  SIGNUP: 'SIGN UP',
 };

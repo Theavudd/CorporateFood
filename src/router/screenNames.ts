@@ -4,5 +4,6 @@ const ScreenNames = {
   BOTTOM: 'BottomTab',
   WELCOME: 'WelcomeScreen',
   LOGIN: 'Login',
+  SIGNUP: 'SignUp',
 };
 export default ScreenNames;

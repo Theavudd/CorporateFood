@@ -25,7 +25,9 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const onPressLogin = () => {};
+  const onPressSignUp = () => {
+    navigation.navigate(ScreenNames.SIGNUP);
+  };
   const arrowPress = () => {
     navigation.navigate(ScreenNames.WELCOME);
   };
@@ -126,7 +128,7 @@ const Login = () => {
         />
         <Text style={styles.dontHaveAccount}>
           {string.dontHaveAccount}
-          <Text style={styles.signUp} onPress={onPressLogin}>
+          <Text style={styles.signUp} onPress={onPressSignUp}>
             {string.signUp}
           </Text>
         </Text>

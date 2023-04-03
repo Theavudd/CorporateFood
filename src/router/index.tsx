@@ -13,6 +13,7 @@ import {useColorScheme} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import WelcomeScreen from '../modules/welcome';
 import Login from '../modules/auth/login';
+import SignUp from '../modules/auth/signUp';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {headerShown: false};
@@ -29,6 +30,7 @@ function Router() {
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name={ScreenNames.SPLASH} component={SplashScreen} />
         <Stack.Screen name={ScreenNames.LOGIN} component={Login} />
+        <Stack.Screen name={ScreenNames.SIGNUP} component={SignUp} />
         <Stack.Screen name={ScreenNames.WELCOME} component={WelcomeScreen} />
         <Stack.Screen name={ScreenNames.BOTTOM} component={BottomTabNav} />
       </Stack.Navigator>
