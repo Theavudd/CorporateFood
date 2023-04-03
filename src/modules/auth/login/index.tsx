@@ -75,18 +75,22 @@ const Login = () => {
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}
-          setText={setPasswordState}
-          placeholder={string.password}
           borderWidth={0.5}
           rightIcon={!showPassword ? image.password : image.hidePassword}
           rightIconContainerStyle={styles.eyeContainer}
           rightIconStyle={styles.eyeImage}
           onRightIconPress={onEyePress}
           takeIconsInsideBorder
-          containerStyle={styles.inputContainerStyle}
+          setText={setPasswordState}
           focusColor={colors.orange}
-          notFocussedColor={colors.grayLight1}
+          placeholder={string.password}
+          onRightIconPress={onEyePress}
           secureTextInput={showPassword}
+          rightIconStyle={styles.eyeImage}
+          notFocussedColor={colors.grayLight1}
+          containerStyle={styles.inputContainerStyle}
+          rightIconContainerStyle={styles.eyeContainer}
+          rightIcon={showPassword ? image.password : image.hidePassword}
         />
       </View>
     );
