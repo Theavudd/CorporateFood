@@ -1,5 +1,5 @@
 import styles from './styles';
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import image from '@corporateFoods/utils/image';
 import string from '@corporateFoods/utils/string';
 import {colors} from '@corporateFoods/utils/colors';
@@ -19,6 +19,18 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(true);
   const navigation: any = useNavigation();
   const params: any = useRoute()?.params;
+  const setEmailState = useCallback((value: string) => {
+    setEmail(value);
+  }, []);
+  const setNameState = useCallback((value: string) => {
+    setName(value);
+  }, []);
+  const setPasswordState = useCallback((value: string) => {
+    setPassword(value);
+  }, []);
+  const setShowPasswordState = useCallback(() => {
+    setShowPassword(!showPassword);
+  }, [showPassword]);
 
   const showBackButton: boolean =
     params?.showBackButton !== undefined ? params?.showBackButton : true;
@@ -56,9 +68,7 @@ export default function SignUp() {
         <Text style={styles.inputName}>{string.fullName}</Text>
         <CustomInput
           value={name}
-          setText={(value: string) => {
-            setName(value);
-          }}
+          setText={setNameState}
           placeholder={string.fullName}
           borderWidth={0.5}
           customInputStyle={styles.inputContainerStyle}
@@ -74,9 +84,7 @@ export default function SignUp() {
         <Text style={styles.inputName}>{string.email}</Text>
         <CustomInput
           value={email}
-          setText={(value: string) => {
-            setEmail(value);
-          }}
+          setText={setEmailState}
           placeholder={string.emailPlaceHolder}
           borderWidth={0.5}
           customInputStyle={styles.inputContainerStyle}
@@ -92,17 +100,13 @@ export default function SignUp() {
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}
-          setText={(value: string) => {
-            setPassword(value);
-          }}
+          setText={setPasswordState}
           placeholder={string.password}
           borderWidth={0.5}
           rightIcon={!showPassword ? image.password : image.hidePassword}
           rightIconContainerStyle={styles.eyeContainer}
           rightIconStyle={styles.eyeImage}
-          onRightIconPress={() => {
-            setShowPassword(!showPassword);
-          }}
+          onRightIconPress={setShowPasswordState}
           takeIconsInsideBorder
           containerStyle={styles.inputContainerStyle}
           focusColor={colors.orange}
