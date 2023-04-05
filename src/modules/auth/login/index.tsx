@@ -133,7 +133,12 @@ const Login = () => {
           <Text style={styles.login}>{string.login}</Text>
           {emailComponent()}
           {passwordComponent()}
-          <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(ScreenNames.RESET);
+            }}>
+            <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
+          </TouchableOpacity>
           <CustomButton
             buttonText={string.LOGIN}
             onPress={() => {}}
