@@ -11,9 +11,11 @@ export default {
   signUpWith: 'Sign up with',
   signInWith: 'Sign in with',
   corporatefood: 'Corporate Food',
+  resetPassword: 'Reset Password',
   loginWithEmail: 'Login with Email',
   forgotPassword: 'Forgot password?',
   emailPlaceHolder: 'Your email or phone',
   dontHaveAccount: 'Don’t have an account? ',
   alreadyHaveAccount: 'Already have an account? ',
+  resetText: 'Please enter your email address to \nrequest a password reset',
 };

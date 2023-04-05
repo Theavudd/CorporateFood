@@ -10,7 +10,13 @@ import ScreenNames from '@corporateFoods/router/screenNames';
 import CustomInput from '@corporateFoods/components/customInput';
 import CustomButton from '@corporateFoods/components/customButton';
 import HideKeyboard from '@corporateFoods/components/hideKeyboard';
-import {Text, View, SafeAreaView, ImageBackground} from 'react-native';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 
 const Login = () => {
@@ -123,7 +129,12 @@ const Login = () => {
         <Text style={styles.login}>{string.login}</Text>
         {emailComponent()}
         {passwordComponent()}
-        <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate(ScreenNames.RESET);
+          }}>
+          <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
+        </TouchableOpacity>
         <CustomButton
           buttonText={string.LOGIN}
           onPress={() => {}}
