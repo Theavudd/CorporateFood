@@ -27,6 +27,7 @@ export const styles = StyleSheet.create({
   eyeImage: {
     width: '100%',
     height: '100%',
+    tintColor: colors.gray,
   },
   inputContainerStyle: {
     height: vh(50),

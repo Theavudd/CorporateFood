@@ -90,7 +90,7 @@ const Login = () => {
           notFocussedColor={colors.grayLight1}
           containerStyle={styles.inputContainerStyle}
           rightIconContainerStyle={styles.eyeContainer}
-          rightIcon={showPassword ? image.password : image.hidePassword}
+          rightIcon={showPassword ? image.hidePassword : image.password}
         />
       </View>
     );
