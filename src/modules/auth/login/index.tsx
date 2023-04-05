@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import fonts from '@corporateFoods/utils/fonts';
 import image from '@corporateFoods/utils/image';
 import string from '@corporateFoods/utils/string';
-import {vw} from '@corporateFoods/utils/dimensions';
+import {vh, vw} from '@corporateFoods/utils/dimensions';
 import {colors} from '@corporateFoods/utils/colors';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import ScreenNames from '@corporateFoods/router/screenNames';
 import CustomInput from '@corporateFoods/components/customInput';
 import CustomButton from '@corporateFoods/components/customButton';
@@ -18,13 +18,19 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const params: any = useRoute()?.params;
+
+  const showBackButton: boolean =
+    params?.showBackButton !== undefined ? params?.showBackButton : true;
 
   const onPressSignUp = React.useCallback(() => {
-    navigation.navigate(ScreenNames.SIGNUP);
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else navigation.navigate(ScreenNames.SIGNUP);
   }, []);
 
   const arrowPress = React.useCallback(() => {
-    navigation.navigate(ScreenNames.WELCOME);
+    navigation.goBack();
   }, []);
 
   const setEmailState = React.useCallback((value: string) => {
@@ -65,7 +71,7 @@ const Login = () => {
           setText={setPasswordState}
           placeholder={string.password}
           borderWidth={0.5}
-          rightIcon={showPassword ? image.password : image.hidePassword}
+          rightIcon={!showPassword ? image.password : image.hidePassword}
           rightIconContainerStyle={styles.eyeContainer}
           rightIconStyle={styles.eyeImage}
           onRightIconPress={onEyePress}
@@ -105,13 +111,15 @@ const Login = () => {
 
   const screenComponents = () => {
     return (
-      <View style={styles.mainView}>
-        <HeaderComponent
-          leftImage={image.back}
-          leftContainerStyle={styles.headerButtonContainer}
-          onLeftButtonPress={arrowPress}
-          leftImageContainerStyle={styles.headerLeftImageStyle}
-        />
+      <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
+        {showBackButton && (
+          <HeaderComponent
+            leftImage={image.back}
+            leftContainerStyle={styles.headerButtonContainer}
+            onLeftButtonPress={arrowPress}
+            leftImageContainerStyle={styles.headerLeftImageStyle}
+          />
+        )}
         <Text style={styles.login}>{string.login}</Text>
         {emailComponent()}
         {passwordComponent()}

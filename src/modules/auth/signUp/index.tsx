@@ -3,13 +3,14 @@ import React, {useState} from 'react';
 import image from '@corporateFoods/utils/image';
 import string from '@corporateFoods/utils/string';
 import {colors} from '@corporateFoods/utils/colors';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import ScreenNames from '@corporateFoods/router/screenNames';
 import CustomInput from '@corporateFoods/components/customInput';
 import CustomButton from '@corporateFoods/components/customButton';
 import HideKeyboard from '@corporateFoods/components/hideKeyboard';
 import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
+import {vh} from '@corporateFoods/utils/dimensions';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -17,8 +18,16 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
   const navigation: any = useNavigation();
+  const params: any = useRoute()?.params;
 
-  const onPressSignIn = () => {};
+  const showBackButton: boolean =
+    params?.showBackButton !== undefined ? params?.showBackButton : true;
+
+  const onPressSignIn = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else navigation.navigate(ScreenNames.LOGIN);
+  };
 
   const socialSignInComponent = () => {
     return (
@@ -88,7 +97,7 @@ export default function SignUp() {
           }}
           placeholder={string.password}
           borderWidth={0.5}
-          rightIcon={showPassword ? image.password : image.hidePassword}
+          rightIcon={!showPassword ? image.password : image.hidePassword}
           rightIconContainerStyle={styles.eyeContainer}
           rightIconStyle={styles.eyeImage}
           onRightIconPress={() => {
@@ -106,18 +115,20 @@ export default function SignUp() {
   };
 
   const arrowPress = React.useCallback(() => {
-    navigation.navigate(ScreenNames.WELCOME);
+    navigation.goBack();
   }, []);
 
   const screenComponents = () => {
     return (
-      <View style={styles.mainView}>
-        <HeaderComponent
-          leftImage={image.back}
-          leftContainerStyle={styles.headerButtonContainer}
-          onLeftButtonPress={arrowPress}
-          leftImageContainerStyle={styles.headerLeftImageStyle}
-        />
+      <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
+        {showBackButton && (
+          <HeaderComponent
+            leftImage={image.back}
+            leftContainerStyle={styles.headerButtonContainer}
+            onLeftButtonPress={arrowPress}
+            leftImageContainerStyle={styles.headerLeftImageStyle}
+          />
+        )}
         <Text style={styles.signUp}>{string.signUp}</Text>
         {fullNameComponent()}
         {emailComponent()}
@@ -140,7 +151,10 @@ export default function SignUp() {
     );
   };
   return (
-    <ImageBackground style={{flex: 1}} source={image.backgroundWrapper}>
+    <ImageBackground
+      style={{flex: 1}}
+      source={image.backgroundWrapper}
+      resizeMode={'stretch'}>
       <SafeAreaView style={styles.safeView}>
         <HideKeyboard>{screenComponents()}</HideKeyboard>
       </SafeAreaView>
