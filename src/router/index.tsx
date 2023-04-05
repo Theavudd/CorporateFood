@@ -31,6 +31,7 @@ function Router() {
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : Mytheme}>
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name={ScreenNames.SPLASH} component={SplashScreen} />
+        <Stack.Screen name={ScreenNames.WELCOME} component={WelcomeScreen} />
         <Stack.Screen name={ScreenNames.LOGIN} component={Login} />
         <Stack.Screen name={ScreenNames.SIGNUP} component={SignUp} />
         <Stack.Screen name={ScreenNames.RESET} component={ResetPassword} />
@@ -38,7 +39,6 @@ function Router() {
           name={ScreenNames.VERIFICATION}
           component={Verification}
         />
-        <Stack.Screen name={ScreenNames.WELCOME} component={WelcomeScreen} />
         <Stack.Screen name={ScreenNames.BOTTOM} component={BottomTabNav} />
       </Stack.Navigator>
     </NavigationContainer>

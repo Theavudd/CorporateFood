@@ -11,6 +11,7 @@ import HideKeyboard from '@corporateFoods/components/hideKeyboard';
 import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {vh} from '@corporateFoods/utils/dimensions';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -124,34 +125,40 @@ export default function SignUp() {
 
   const screenComponents = () => {
     return (
-      <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
-        {showBackButton && (
-          <HeaderComponent
-            leftImage={image.back}
-            leftContainerStyle={styles.headerButtonContainer}
-            onLeftButtonPress={arrowPress}
-            leftImageContainerStyle={styles.headerLeftImageStyle}
+      <KeyboardAwareScrollView
+        bounces={false}
+        showsVerticalScrollIndicator={false}>
+        <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
+          {showBackButton && (
+            <HeaderComponent
+              leftImage={image.back}
+              leftContainerStyle={styles.headerButtonContainer}
+              onLeftButtonPress={arrowPress}
+              leftImageContainerStyle={styles.headerLeftImageStyle}
+            />
+          )}
+          <Text style={styles.signUp}>{string.signUp}</Text>
+          {fullNameComponent()}
+          {emailComponent()}
+          {passwordComponent()}
+          <CustomButton
+            buttonText={string.SIGNUP}
+            onPress={() => {
+              navigation.navigate(ScreenNames.VERIFICATION);
+            }}
+            containerStyle={styles.buttonContainerStyle}
+            textStyle={styles.buttonText}
           />
-        )}
-        <Text style={styles.signUp}>{string.signUp}</Text>
-        {fullNameComponent()}
-        {emailComponent()}
-        {passwordComponent()}
-        <CustomButton
-          buttonText={string.SIGNUP}
-          onPress={() => {}}
-          containerStyle={styles.buttonContainerStyle}
-          textStyle={styles.buttonText}
-        />
 
-        <Text style={styles.alreadyHaveAccount}>
-          {string.alreadyHaveAccount}
-          <Text style={styles.logIn} onPress={onPressSignIn}>
-            {string.login}
+          <Text style={styles.alreadyHaveAccount}>
+            {string.alreadyHaveAccount}
+            <Text style={styles.logIn} onPress={onPressSignIn}>
+              {string.login}
+            </Text>
           </Text>
-        </Text>
-        {socialSignInComponent()}
-      </View>
+          {socialSignInComponent()}
+        </View>
+      </KeyboardAwareScrollView>
     );
   };
   return (

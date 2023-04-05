@@ -1,28 +1,28 @@
 import {StyleSheet} from 'react-native';
-import {vh, vw} from '../../../utils/dimensions';
+import {SCREEN_HEIGHT, vh, vw} from '../../../utils/dimensions';
 import {colors} from '../../../utils/colors';
 import fonts from '../../../utils/fonts';
 
 const styles = StyleSheet.create({
   mainView: {
-    flex: 1,
+    paddingVertical: vh(20),
     paddingHorizontal: vw(26),
     justifyContent: 'space-between',
-    paddingVertical: vh(20),
+    minHeight: SCREEN_HEIGHT - vh(127),
   },
   safeView: {
     flex: 1,
   },
   headerLeftContainer: {
-    backgroundColor: 'white',
-    marginHorizontal: 0,
     height: vh(38),
+    marginHorizontal: 0,
     borderRadius: vw(10),
+    backgroundColor: 'white',
   },
   signUp: {
     fontSize: vw(36),
-    fontFamily: fonts.SemiBold,
     color: colors.blackDark,
+    fontFamily: fonts.SemiBold,
   },
   inputName: {
     color: colors.textGray,
@@ -30,16 +30,16 @@ const styles = StyleSheet.create({
     marginBottom: vh(12),
   },
   inputContainerStyle: {
-    borderRadius: vw(10),
     height: vh(50),
+    borderRadius: vw(10),
   },
   eyeContainer: {
-    height: vh(20),
     width: vw(20),
+    height: vh(20),
   },
   eyeImage: {
-    height: '100%',
     width: '100%',
+    height: '100%',
   },
   buttonContainerStyle: {
     marginHorizontal: vw(20),
@@ -49,39 +49,39 @@ const styles = StyleSheet.create({
   },
   alreadyHaveAccount: {
     alignSelf: 'center',
-    fontFamily: fonts.Regular,
     color: colors.blackDark,
+    fontFamily: fonts.Regular,
   },
   googleButtonContainerStyle: {
-    backgroundColor: colors.white,
     marginHorizontal: vw(20),
+    backgroundColor: colors.white,
   },
   googleSignInText: {color: colors.blackDark, fontFamily: fonts.Regular},
   socialSignInText: {
-    marginHorizontal: '6%',
     fontSize: vw(10),
     color: colors.gray,
+    marginHorizontal: '6%',
   },
   midLine: {
     width: '35%',
-    borderTopWidth: 1,
     marginTop: vh(7),
+    borderTopWidth: 1,
     borderColor: colors.grayLight1,
   },
   socialSignInView: {
+    marginBottom: '7%',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: '7%',
   },
   logIn: {
     fontSize: vw(14),
     color: colors.orange,
   },
   headerButtonContainer: {
-    backgroundColor: 'white',
-    marginHorizontal: 0,
     height: vh(38),
+    marginHorizontal: 0,
     borderRadius: vw(10),
+    backgroundColor: 'white',
   },
   headerLeftImageStyle: {height: '55%'},
 });

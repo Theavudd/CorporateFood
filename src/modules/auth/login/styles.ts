@@ -1,6 +1,6 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import {colors} from '../../../utils/colors';
-import {vw, vh} from '../../../utils/dimensions';
+import {vw, vh, SCREEN_HEIGHT} from '../../../utils/dimensions';
 import fonts from '../../../utils/fonts';
 
 export const styles = StyleSheet.create({
@@ -13,24 +13,24 @@ export const styles = StyleSheet.create({
     marginBottom: vh(12),
   },
   mainView: {
-    flex: 1,
     paddingHorizontal: vw(26),
     justifyContent: 'space-between',
+    minHeight: SCREEN_HEIGHT - vh(127),
   },
   safeView: {
     flex: 1,
   },
   eyeContainer: {
-    height: vh(20),
     width: vw(20),
+    height: vh(20),
   },
   eyeImage: {
-    height: '100%',
     width: '100%',
+    height: '100%',
   },
   inputContainerStyle: {
-    borderRadius: vw(10),
     height: vh(50),
+    borderRadius: vw(10),
   },
   forgotPassword: {
     alignSelf: 'center',
@@ -38,8 +38,8 @@ export const styles = StyleSheet.create({
   },
   login: {
     fontSize: vw(36),
-    fontFamily: fonts.SemiBold,
     color: colors.blackDark,
+    fontFamily: fonts.SemiBold,
   },
   signUp: {
     fontSize: vw(14),
@@ -47,36 +47,36 @@ export const styles = StyleSheet.create({
   },
   dontHaveAccount: {
     alignSelf: 'center',
-    fontFamily: fonts.Regular,
     color: colors.blackDark,
+    fontFamily: fonts.Regular,
   },
   buttonContainerStyle: {
     marginHorizontal: vw(20),
   },
   socialSignInText: {
-    marginHorizontal: '6%',
     fontSize: vw(10),
     color: colors.gray,
+    marginHorizontal: '6%',
   },
   midLine: {
     width: '35%',
-    borderTopWidth: 1,
     marginTop: vh(7),
+    borderTopWidth: 1,
     borderColor: colors.grayLight1,
   },
   socialSignInView: {
+    marginBottom: '7%',
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: '7%',
   },
   buttonText: {
     fontFamily: fonts.SemiBold,
   },
   headerButtonContainer: {
-    backgroundColor: 'white',
-    marginHorizontal: 0,
     height: vh(38),
+    marginHorizontal: 0,
     borderRadius: vw(10),
+    backgroundColor: 'white',
   },
   headerLeftImageStyle: {height: '40%'},
 });
