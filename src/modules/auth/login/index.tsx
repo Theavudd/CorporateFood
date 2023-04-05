@@ -18,6 +18,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const Login = () => {
   const navigation = useNavigation<any>();
@@ -117,38 +118,42 @@ const Login = () => {
 
   const screenComponents = () => {
     return (
-      <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
-        {showBackButton && (
-          <HeaderComponent
-            leftImage={image.back}
-            leftContainerStyle={styles.headerButtonContainer}
-            onLeftButtonPress={arrowPress}
-            leftImageContainerStyle={styles.headerLeftImageStyle}
+      <KeyboardAwareScrollView
+        bounces={false}
+        showsVerticalScrollIndicator={false}>
+        <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
+          {showBackButton && (
+            <HeaderComponent
+              leftImage={image.back}
+              leftContainerStyle={styles.headerButtonContainer}
+              onLeftButtonPress={arrowPress}
+              leftImageContainerStyle={styles.headerLeftImageStyle}
+            />
+          )}
+          <Text style={styles.login}>{string.login}</Text>
+          {emailComponent()}
+          {passwordComponent()}
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(ScreenNames.RESET);
+            }}>
+            <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
+          </TouchableOpacity>
+          <CustomButton
+            buttonText={string.LOGIN}
+            onPress={() => {}}
+            containerStyle={styles.buttonContainerStyle}
+            textStyle={styles.buttonText}
           />
-        )}
-        <Text style={styles.login}>{string.login}</Text>
-        {emailComponent()}
-        {passwordComponent()}
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate(ScreenNames.RESET);
-          }}>
-          <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
-        </TouchableOpacity>
-        <CustomButton
-          buttonText={string.LOGIN}
-          onPress={() => {}}
-          containerStyle={styles.buttonContainerStyle}
-          textStyle={styles.buttonText}
-        />
-        <Text style={styles.dontHaveAccount}>
-          {string.dontHaveAccount}
-          <Text style={styles.signUp} onPress={onPressSignUp}>
-            {string.signUp}
+          <Text style={styles.dontHaveAccount}>
+            {string.dontHaveAccount}
+            <Text style={styles.signUp} onPress={onPressSignUp}>
+              {string.signUp}
+            </Text>
           </Text>
-        </Text>
-        {socialSignInComponent()}
-      </View>
+          {socialSignInComponent()}
+        </View>
+      </KeyboardAwareScrollView>
     );
   };
   return (

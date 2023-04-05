@@ -28,6 +28,8 @@ export interface CustomInputPropsType {
   containerStyle?: ViewProps['style'];
   rightIconStyle?: ImageProps['style'];
   customInputStyle?: ViewProps['style'];
+  onKeyPress?: TextInputProps['onKeyPress'];
+  autoCorrect?: TextInputProps['spellCheck'];
   value: TextInputProps['value'] | undefined;
   placeholder?: TextInputProps['placeholder'];
   maximumLength?: TextInputProps['maxLength'];
@@ -35,10 +37,12 @@ export interface CustomInputPropsType {
   keyboardType?: TextInputProps['keyboardType'];
   resizeModeRightIcon?: ImageProps['resizeMode'];
   resizeMethodLeftIcon?: ImageProps['resizeMethod'];
+  selectionColor?: TextInputProps['selectionColor'];
   resizeMethodRightIcon?: ImageProps['resizeMethod'];
   onLeftIconPress?: TouchableOpacityProps['onPress'];
   onRightIconPress?: TouchableOpacityProps['onPress'];
   secureTextInput?: TextInputProps['secureTextEntry'];
+  selectTextOnFocus?: TextInputProps['selectTextOnFocus'];
   leftIconActiveOpacity?: TouchableOpacityProps['activeOpacity'];
   rightIconActiveOpacity?: TouchableOpacityProps['activeOpacity'];
 }
@@ -50,6 +54,9 @@ const CustomInput = React.forwardRef(
       setText,
       leftIcon,
       rightIcon,
+      selectionColor,
+      onKeyPress = () => {},
+      autoCorrect = false,
       placeholder,
       keyboardType,
       leftIconStyle,
@@ -61,6 +68,7 @@ const CustomInput = React.forwardRef(
       customInputStyle,
       onRightIconPress,
       focusColor = '#000000',
+      selectTextOnFocus,
       leftIconConatinerStyle,
       secureTextInput = false,
       rightIconContainerStyle,
@@ -116,8 +124,14 @@ const CustomInput = React.forwardRef(
           onBlur={setFocusedFunction}
           onFocus={setFocusedFunction}
           secureTextEntry={secureTextInput}
+          autoCorrect={autoCorrect}
+          autoCapitalize="none"
           onChangeText={text => {
             setText(text);
+          }}
+          selectionColor={selectionColor}
+          onKeyPress={e => {
+            onKeyPress(e);
           }}
           style={[
             styles.textInput,
@@ -130,6 +144,7 @@ const CustomInput = React.forwardRef(
                 }
               : {},
           ]}
+          selectTextOnFocus={selectTextOnFocus}
         />
         {rightIcon && (
           <TouchableOpacity

@@ -10,12 +10,17 @@ export default {
   welcomeTo: 'Welcome to',
   signUpWith: 'Sign up with',
   signInWith: 'Sign in with',
+  pleaseResend: 'Please resend',
   corporatefood: 'Corporate Food',
   resetPassword: 'Reset Password',
   loginWithEmail: 'Login with Email',
   forgotPassword: 'Forgot password?',
+  verificationCode: 'Verification Code',
   emailPlaceHolder: 'Your email or phone',
   dontHaveAccount: 'Don’t have an account? ',
+  dontRecieveCode: 'I don’t recevie a code! ',
   alreadyHaveAccount: 'Already have an account? ',
   resetText: 'Please enter your email address to \nrequest a password reset',
+  verificationDecription:
+    'Please type the verification code sent to prelookstudio@gmail.com',
 };
