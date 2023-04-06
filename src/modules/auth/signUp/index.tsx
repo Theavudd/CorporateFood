@@ -12,6 +12,7 @@ import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {vh} from '@corporateFoods/utils/dimensions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {navigationRef} from '@corporateFoods/utils/navigationService';
 
 export default function SignUp() {
   const [name, setName] = useState('');

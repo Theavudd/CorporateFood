@@ -16,8 +16,11 @@ import string from '@corporateFoods/utils/string';
 import {vw} from '@corporateFoods/utils/dimensions';
 import HideKeyboard from '@corporateFoods/components/hideKeyboard';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {SET_DATA, SET_LOADING} from '@corporateFoods/utils/actionTypes';
 
 export default function Verification() {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const arrowPress = () => {
@@ -25,7 +28,10 @@ export default function Verification() {
   };
 
   const onCompleteFill = useCallback((value: string) => {
-    console.log('Value is', value);
+    dispatch({
+      type: SET_DATA,
+      payload: {token: 'ABC'},
+    });
   }, []);
 
   const onPressResend = () => {};

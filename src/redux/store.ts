@@ -1,6 +1,5 @@
-
 import RootReducer from './rootReducer';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import {persistStore, persistReducer} from 'redux-persist';
 import {
@@ -9,7 +8,7 @@ import {
   compose,
 } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AuthReducer from '@corporateFoods/modules/auth/reducer';
 
 let middleware: any = [thunkMiddleware, logger];
 
@@ -22,7 +21,7 @@ const persistConfig = {
   key: 'root',
   blacklist: [],
   storage: AsyncStorage,
-  whitelist: [],
+  whitelist: ['AuthReducer'],
 };
 
 const persistedReducer = persistReducer(persistConfig, RootReducer);
