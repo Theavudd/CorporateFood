@@ -1,5 +1,6 @@
 import Snackbar from 'react-native-snackbar';
 import {getUniqueId} from 'react-native-device-info';
+import {LayoutAnimation, Platform, UIManager} from 'react-native';
 
 /**
  * shows snackbar
@@ -32,7 +33,15 @@ const getDeviceDetail = () => {
   return d;
 };
 
+const linearAnimation = () => {
+  if (Platform.OS === 'android') {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+  LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+};
+
 export default {
   showSnackbar,
   getDeviceDetail,
+  linearAnimation,
 };

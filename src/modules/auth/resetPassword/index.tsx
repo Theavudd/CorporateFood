@@ -1,16 +1,17 @@
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import image from '@corporateFoods/utils/image';
-import HeaderComponent from '@corporateFoods/components/headerComponent';
-import {vh, vw} from '@corporateFoods/utils/dimensions';
-import {useNavigation} from '@react-navigation/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import HideKeyboard from '@corporateFoods/components/hideKeyboard';
-import string from '@corporateFoods/utils/string';
 import fonts from '@corporateFoods/utils/fonts';
+import string from '@corporateFoods/utils/string';
+11;
 import {colors} from '@corporateFoods/utils/colors';
+import {useNavigation} from '@react-navigation/native';
+import {vh, vw} from '@corporateFoods/utils/dimensions';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomInput from '@corporateFoods/components/customInput';
+import HideKeyboard from '@corporateFoods/components/hideKeyboard';
 import CustomButton from '@corporateFoods/components/customButton';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import HeaderComponent from '@corporateFoods/components/headerComponent';
 
 export default function ResetPassword() {
   const navigation = useNavigation<any>();
