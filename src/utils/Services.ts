@@ -33,44 +33,41 @@ const $http = axios.create({
   headers: {
     'Content-Type': 'application/json',
     offset: `${new Date().getTimezoneOffset()}`,
-    // basicauth: `basic Zml2ZXN0YXI6WHp5cyV7Sk5edzlBc0M=`,
+    basicauth: `basic Zml2ZXN0YXI6WHp5cyV7Sk5edzlBc0M=`,
   },
 });
 
 /**
  * check error message from response and show message according to screen
  */
-// $http.interceptors.response.use(
-//   (config: any) => config,
-//   (error: any) => {
-//     if (
-//       error?.message?.includes('403') ||
-//       error?.message?.includes('401') || //Session expire
-//       error?.message?.includes('498')
-//     ) {
-//       const route = navigationRef.current?.getCurrentRoute().name;
+$http.interceptors.response.use(
+  (config: any) => config,
+  (error: any) => {
+    if (
+      error?.message?.includes('403') ||
+      error?.message?.includes('401') || //Session expire
+      error?.message?.includes('498')
+    ) {
+      const route = navigationRef.current?.getCurrentRoute().name;
 
-//       if (
-//         route !== ScreenNames.SignIn &&
-//         route !== ScreenNames.ForgotPassword &&
-//         route !== ScreenNames.SignUp &&
-//         route !== ScreenNames.FINDACCOUNT &&
-//         route !== ScreenNames.ForgotPassword
-//       ) {
-//         handleApiError();
-//       } else {
-//         if (
-//           !error?.message?.includes('401') &&
-//           !error?.message?.includes('498')
-//         )
-//           commonFunction.showSnackbar(error?.response?.data?.message);
-//       }
-//     } else {
-//       commonFunction.showSnackbar(error?.response?.data?.message);
-//     }
-//     return error as unknown;
-//   },
-// );
+      // if (
+      //   route !== ScreenNames.SignIn &&
+      //   route !== ScreenNames.ForgotPassword &&
+      //   route !== ScreenNames.SignUp &&
+      //   route !== ScreenNames.FINDACCOUNT &&
+      //   route !== ScreenNames.ForgotPassword
+      // ) {
+      //   handleApiError();
+      // } else {
+      if (!error?.message?.includes('401') && !error?.message?.includes('498'))
+        commonFunction.showSnackbar(error?.response?.data?.message);
+      // }
+    } else {
+      commonFunction.showSnackbar(error?.response?.data?.message);
+    }
+    return error as unknown;
+  },
+);
 
 /**
  * navigate to session expiry screen if error occurs
@@ -84,6 +81,7 @@ const $http = axios.create({
  */
 // $http.interceptors.request.use(
 //   (req: any) => {
+//     console.log('req', req);
 //     if (req?.headers) {
 //       const getState = store?.getState();
 //       if (getState) {

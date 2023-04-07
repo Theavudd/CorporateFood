@@ -1,11 +1,13 @@
 import {styles} from './styles';
-import React, {useState} from 'react';
 import fonts from '@corporateFoods/utils/fonts';
 import image from '@corporateFoods/utils/image';
+import React, {useEffect, useState} from 'react';
 import string from '@corporateFoods/utils/string';
 import {vh, vw} from '@corporateFoods/utils/dimensions';
 import {colors} from '@corporateFoods/utils/colors';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import Services from '@corporateFoods/utils/Services';
+import {useNavigation} from '@react-navigation/native';
+import Endpoints from '@corporateFoods/utils/Endpoints';
 import ScreenNames from '@corporateFoods/router/screenNames';
 import CustomInput from '@corporateFoods/components/customInput';
 import CustomButton from '@corporateFoods/components/customButton';
@@ -42,6 +44,19 @@ const Login = () => {
 
   const setEmailState = React.useCallback((value: string) => {
     setEmail(value);
+  }, []);
+
+  useEffect(() => {
+    Services.postApiCall(
+      Endpoints.login,
+      {email: 'faizz@gmail.com', password: 'test@123'},
+      (res: any) => {
+        console.log('ressssss--------', res);
+      },
+      (error: any) => {
+        console.log('error', error);
+      },
+    );
   }, []);
 
   const emailComponent = () => {
