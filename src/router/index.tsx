@@ -20,6 +20,7 @@ import {useSelector} from 'react-redux';
 import {ReducersModal} from '@corporateFoods/utils/modal';
 import Home from '@corporateFoods/modules/home';
 import commonFunction from '@corporateFoods/utils/commonFunction';
+import ProfileScreen from '@corporateFoods/modules/profile';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {headerShown: false};
@@ -58,6 +59,10 @@ function Router() {
             <Stack.Screen
               name={ScreenNames.VERIFICATION}
               component={Verification}
+            />
+            <Stack.Screen
+              name={ScreenNames.PROFILE}
+              component={ProfileScreen}
             />
           </>
         ) : (

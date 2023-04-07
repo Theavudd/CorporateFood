@@ -4,5 +4,7 @@ export default {
   welcome: require('../assets/images/welcome.png'),
   password: require('../assets/images/password.png'),
   hidePassword: require('../assets/images/hide.png'),
+  profile: require('../assets/images/profile.png'),
+
   backgroundWrapper: require('../assets/images/background.png'),
 };

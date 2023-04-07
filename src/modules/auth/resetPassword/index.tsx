@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import image from '@corporateFoods/utils/image';
 import fonts from '@corporateFoods/utils/fonts';
 import string from '@corporateFoods/utils/string';
-11;
 import {colors} from '@corporateFoods/utils/colors';
 import {useNavigation} from '@react-navigation/native';
 import {vh, vw} from '@corporateFoods/utils/dimensions';
@@ -12,6 +11,7 @@ import HideKeyboard from '@corporateFoods/components/hideKeyboard';
 import CustomButton from '@corporateFoods/components/customButton';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
+import ScreenNames from '@corporateFoods/router/screenNames';
 
 export default function ResetPassword() {
   const navigation = useNavigation<any>();
@@ -25,38 +25,16 @@ export default function ResetPassword() {
 
   const screenComponents = () => {
     return (
-      <View>
+      <View style={styles.mainView}>
         <HeaderComponent
           leftImage={image.back}
           leftContainerStyle={styles.headerButtonContainer}
           onLeftButtonPress={arrowPress}
           leftImageContainerStyle={styles.headerLeftImageStyle}
         />
-        <View
-          style={{
-            justifyContent: 'center',
-            // alignSelf: 'center',
-            marginVertical: vh(40),
-            marginHorizontal: vw(26),
-          }}>
-          <Text
-            style={{
-              fontFamily: fonts.Regular,
-              fontWeight: '600',
-              fontSize: 36,
-              color: colors.blackDark,
-              marginVertical: vh(20),
-            }}>
-            {string.resetPassword}
-          </Text>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: '400',
-              color: colors.blackLight2,
-            }}>
-            {string.resetText}
-          </Text>
+        <View style={styles.resetView}>
+          <Text style={styles.resetPassword}>{string.resetPassword}</Text>
+          <Text style={styles.resetDescription}>{string.resetText}</Text>
         </View>
         <CustomInput
           setText={setEmailState}
@@ -69,7 +47,9 @@ export default function ResetPassword() {
         />
         <CustomButton
           buttonText={'SEND NEW PASSWORD'}
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate(ScreenNames.PROFILE);
+          }}
           containerStyle={styles.buttonContainerStyle}
           textStyle={styles.buttonText}
         />
@@ -106,7 +86,6 @@ const styles = StyleSheet.create({
   inputContainerStyle: {
     borderRadius: vw(10),
     height: vh(50),
-    marginHorizontal: vw(26),
   },
   buttonContainerStyle: {
     marginHorizontal: vw(20),
@@ -115,4 +94,20 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: fonts.SemiBold,
   },
+  resetPassword: {
+    fontFamily: fonts.SemiBold,
+    fontSize: vw(36),
+    color: colors.blackDark,
+    marginVertical: vh(20),
+  },
+  resetDescription: {
+    fontSize: vw(14),
+    fontFamily: fonts.Regular,
+    color: colors.blackLight2,
+  },
+  resetView: {
+    justifyContent: 'center',
+    marginVertical: vh(40),
+  },
+  mainView: {flex: 1, paddingHorizontal: vw(26)},
 });
