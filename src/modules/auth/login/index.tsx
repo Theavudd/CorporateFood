@@ -1,11 +1,13 @@
 import {styles} from './styles';
-import React, {useCallback, useState} from 'react';
 import fonts from '@corporateFoods/utils/fonts';
 import image from '@corporateFoods/utils/image';
+import React, {useCallback, useEffect, useState} from 'react';
 import string from '@corporateFoods/utils/string';
 import {vh, vw} from '@corporateFoods/utils/dimensions';
 import {colors} from '@corporateFoods/utils/colors';
+
 import {useNavigation, useRoute} from '@react-navigation/native';
+
 import ScreenNames from '@corporateFoods/router/screenNames';
 import CustomInput from '@corporateFoods/components/customInput';
 import CustomButton from '@corporateFoods/components/customButton';
