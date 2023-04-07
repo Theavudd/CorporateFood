@@ -7,5 +7,6 @@ const ScreenNames = {
   SIGNUP: 'SignUp',
   RESET: 'ResetPassword',
   VERIFICATION: 'Verification',
+  PROFILE: 'ProfileScreen',
 };
 export default ScreenNames;
