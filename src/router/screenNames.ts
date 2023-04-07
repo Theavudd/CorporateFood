@@ -8,5 +8,6 @@ const ScreenNames = {
   RESET: 'ResetPassword',
   VERIFICATION: 'Verification',
   PROFILE: 'ProfileScreen',
+  CHOICE: 'choice',
 };
 export default ScreenNames;

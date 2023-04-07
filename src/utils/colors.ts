@@ -19,4 +19,5 @@ export const colors = {
   grayLight2: '#EBEBEB',
   textGray: '#9796A1',
   borderBlack: '#EEEEEE',
+  darkWhite: '#F8F8F8',
 };

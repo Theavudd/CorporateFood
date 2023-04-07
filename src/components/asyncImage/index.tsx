@@ -45,14 +45,16 @@ export default function AsyncImage({
         />
       );
     }
-    return (
+    return !localImage ? (
       <FastImage
         onError={onError}
-        resizeMode={resizeMode}
         source={{uri: imgUrl}}
+        resizeMode={resizeMode}
         style={[styles.imgStyle, extraImgStyle]}
         {...rest}
       />
+    ) : (
+      <></>
     );
   };
 

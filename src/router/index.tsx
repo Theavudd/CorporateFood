@@ -21,6 +21,7 @@ import {ReducersModal} from '@corporateFoods/utils/modal';
 import Home from '@corporateFoods/modules/home';
 import commonFunction from '@corporateFoods/utils/commonFunction';
 import ProfileScreen from '@corporateFoods/modules/profile';
+import Choice from '@corporateFoods/modules/auth/choice';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {headerShown: false};
@@ -56,6 +57,7 @@ function Router() {
             <Stack.Screen name={ScreenNames.LOGIN} component={Login} />
             <Stack.Screen name={ScreenNames.SIGNUP} component={SignUp} />
             <Stack.Screen name={ScreenNames.RESET} component={ResetPassword} />
+            <Stack.Screen name={ScreenNames.CHOICE} component={Choice} />
             <Stack.Screen
               name={ScreenNames.VERIFICATION}
               component={Verification}

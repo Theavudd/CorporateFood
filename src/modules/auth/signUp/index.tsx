@@ -129,36 +129,40 @@ export default function SignUp() {
       <KeyboardAwareScrollView
         bounces={false}
         showsVerticalScrollIndicator={false}>
-        <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
-          {showBackButton && (
-            <HeaderComponent
-              leftImage={image.back}
-              leftContainerStyle={styles.headerButtonContainer}
-              onLeftButtonPress={arrowPress}
-              leftImageContainerStyle={styles.headerLeftImageStyle}
+        <HideKeyboard>
+          <View
+            style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
+            {showBackButton && (
+              <HeaderComponent
+                leftImage={image.back}
+                leftContainerStyle={styles.headerButtonContainer}
+                onLeftButtonPress={arrowPress}
+                leftImageContainerStyle={styles.headerLeftImageStyle}
+              />
+            )}
+            <Text style={styles.signUp}>{string.signUp}</Text>
+            {fullNameComponent()}
+            {emailComponent()}
+            {passwordComponent()}
+            <CustomButton
+              buttonText={string.SIGNUP}
+              onPress={() => {
+                navigation.navigate(ScreenNames.CHOICE);
+                // navigation.navigate(ScreenNames.VERIFICATION);
+              }}
+              containerStyle={styles.buttonContainerStyle}
+              textStyle={styles.buttonText}
             />
-          )}
-          <Text style={styles.signUp}>{string.signUp}</Text>
-          {fullNameComponent()}
-          {emailComponent()}
-          {passwordComponent()}
-          <CustomButton
-            buttonText={string.SIGNUP}
-            onPress={() => {
-              navigation.navigate(ScreenNames.VERIFICATION);
-            }}
-            containerStyle={styles.buttonContainerStyle}
-            textStyle={styles.buttonText}
-          />
 
-          <Text style={styles.alreadyHaveAccount}>
-            {string.alreadyHaveAccount}
-            <Text style={styles.logIn} onPress={onPressSignIn}>
-              {string.login}
+            <Text style={styles.alreadyHaveAccount}>
+              {string.alreadyHaveAccount}
+              <Text style={styles.logIn} onPress={onPressSignIn}>
+                {string.login}
+              </Text>
             </Text>
-          </Text>
-          {socialSignInComponent()}
-        </View>
+            {socialSignInComponent()}
+          </View>
+        </HideKeyboard>
       </KeyboardAwareScrollView>
     );
   };
@@ -167,9 +171,7 @@ export default function SignUp() {
       style={{flex: 1}}
       source={image.backgroundWrapper}
       resizeMode={'stretch'}>
-      <SafeAreaView style={styles.safeView}>
-        <HideKeyboard>{screenComponents()}</HideKeyboard>
-      </SafeAreaView>
+      <SafeAreaView style={styles.safeView}>{screenComponents()}</SafeAreaView>
     </ImageBackground>
   );
 }

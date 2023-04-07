@@ -14,5 +14,6 @@ export default HideKeyboard;
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
+    backgroundColor: 'green',
   },
 });
