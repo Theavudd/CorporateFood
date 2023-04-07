@@ -121,38 +121,41 @@ const Login = () => {
       <KeyboardAwareScrollView
         bounces={false}
         showsVerticalScrollIndicator={false}>
-        <View style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
-          {showBackButton && (
-            <HeaderComponent
-              leftImage={image.back}
-              leftContainerStyle={styles.headerButtonContainer}
-              onLeftButtonPress={arrowPress}
-              leftImageContainerStyle={styles.headerLeftImageStyle}
+        <HideKeyboard>
+          <View
+            style={[styles.mainView, !showBackButton && {marginTop: vh(20)}]}>
+            {showBackButton && (
+              <HeaderComponent
+                leftImage={image.back}
+                leftContainerStyle={styles.headerButtonContainer}
+                onLeftButtonPress={arrowPress}
+                leftImageContainerStyle={styles.headerLeftImageStyle}
+              />
+            )}
+            <Text style={styles.login}>{string.login}</Text>
+            {emailComponent()}
+            {passwordComponent()}
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate(ScreenNames.RESET);
+              }}>
+              <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
+            </TouchableOpacity>
+            <CustomButton
+              buttonText={string.LOGIN}
+              onPress={() => {}}
+              containerStyle={styles.buttonContainerStyle}
+              textStyle={styles.buttonText}
             />
-          )}
-          <Text style={styles.login}>{string.login}</Text>
-          {emailComponent()}
-          {passwordComponent()}
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate(ScreenNames.RESET);
-            }}>
-            <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
-          </TouchableOpacity>
-          <CustomButton
-            buttonText={string.LOGIN}
-            onPress={() => {}}
-            containerStyle={styles.buttonContainerStyle}
-            textStyle={styles.buttonText}
-          />
-          <Text style={styles.dontHaveAccount}>
-            {string.dontHaveAccount}
-            <Text style={styles.signUp} onPress={onPressSignUp}>
-              {string.signUp}
+            <Text style={styles.dontHaveAccount}>
+              {string.dontHaveAccount}
+              <Text style={styles.signUp} onPress={onPressSignUp}>
+                {string.signUp}
+              </Text>
             </Text>
-          </Text>
-          {socialSignInComponent()}
-        </View>
+            {socialSignInComponent()}
+          </View>
+        </HideKeyboard>
       </KeyboardAwareScrollView>
     );
   };
@@ -161,9 +164,7 @@ const Login = () => {
       style={styles.container}
       source={image.backgroundWrapper}
       resizeMode={'stretch'}>
-      <SafeAreaView style={styles.safeView}>
-        <HideKeyboard>{screenComponents()}</HideKeyboard>
-      </SafeAreaView>
+      <SafeAreaView style={styles.safeView}>{screenComponents()}</SafeAreaView>
     </ImageBackground>
   );
 };
