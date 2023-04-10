@@ -110,7 +110,7 @@ export const validateEmail = (email: string) => {
   if (emailRegex.test(email)) {
     return {status: true, msg: '', proceed: true};
   } else {
-    return {status: false, msg: 'Email id is not valid', proceed: false};
+    return {status: false, msg: 'Email Id is not valid', proceed: false};
   }
 };
 export const validateEmployeeId = (empId: string) => {

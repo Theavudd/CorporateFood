@@ -1,5 +1,5 @@
 import styles from './styles';
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useCallback} from 'react';
 import image from '@corporateFoods/utils/image';
 import string from '@corporateFoods/utils/string';
 import {colors} from '@corporateFoods/utils/colors';
@@ -13,16 +13,6 @@ import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {vh} from '@corporateFoods/utils/dimensions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import {signUPFunction} from '../action';
-
-import {
-  vaildatePassword,
-  validateEmail,
-  validateName,
-} from '@corporateFoods/utils/validation';
-import {navigationRef} from '@corporateFoods/utils/navigationService';
-import Services from '@corporateFoods/utils/Services';
-import axios from 'axios';
 import {
   vaildatePassword,
   validateEmail,
@@ -94,15 +84,6 @@ export default function SignUp() {
     } else navigation.navigate(ScreenNames.LOGIN);
   };
 
-  const onSignUp = () => {
-    // navigation.navigate(ScreenNames.CHOICE, {
-    //   name,
-    //   email,
-    //   password,
-    // });
-    navigation.navigate(ScreenNames.VERIFICATION);
-  };
-
   const socialSignInComponent = () => {
     return (
       <View>
@@ -130,7 +111,7 @@ export default function SignUp() {
 
   const fullNameComponent = () => {
     return (
-      <View style={{height: '10%'}}>
+      <View style={{height: '12%'}}>
         <Text style={styles.inputName}>{string.fullName}</Text>
         <CustomInput
           value={name}
@@ -156,7 +137,7 @@ export default function SignUp() {
   }, [email]);
   const emailComponent = () => {
     return (
-      <View style={{height: '10%'}}>
+      <View style={{height: '12%'}}>
         <Text style={styles.inputName}>{string.email}</Text>
         <CustomInput
           value={email}
@@ -182,7 +163,7 @@ export default function SignUp() {
   }, [password]);
   const passwordComponent = () => {
     return (
-      <View style={{height: '10%'}}>
+      <View style={{height: '12%'}}>
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}

@@ -13,6 +13,7 @@ import Images from '../../utils/image';
 import {colors} from '@corporateFoods/utils/colors';
 
 interface Props {
+  disabled?: boolean;
   buttonText?: string;
   leftImage?: ImageProps['source'];
   rightImage?: ImageProps['source'];
@@ -27,6 +28,7 @@ interface Props {
 }
 
 function CustomButton({
+  disabled,
   buttonText,
   leftImage,
   rightImage,

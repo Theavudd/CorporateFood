@@ -12,16 +12,26 @@ import CustomButton from '@corporateFoods/components/customButton';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import ScreenNames from '@corporateFoods/router/screenNames';
+import {validateEmail} from '@corporateFoods/utils/validation';
 
 export default function ResetPassword() {
   const navigation = useNavigation<any>();
   const [email, setEmail] = useState('');
+  const [isValidEmail, setIsvalidEmail] = useState({
+    status: true,
+    msg: '',
+    proceed: false,
+  });
   const arrowPress = React.useCallback(() => {
     navigation.goBack();
   }, []);
   const setEmailState = React.useCallback((value: string) => {
     setEmail(value);
   }, []);
+  const onEmailInputBlur = React.useCallback(() => {
+    const checkisValidEmail = validateEmail(email.trim());
+    setIsvalidEmail(checkisValidEmail);
+  }, [email]);
 
   const screenComponents = () => {
     return (
@@ -36,19 +46,30 @@ export default function ResetPassword() {
           <Text style={styles.resetPassword}>{string.resetPassword}</Text>
           <Text style={styles.resetDescription}>{string.resetText}</Text>
         </View>
-        <CustomInput
-          setText={setEmailState}
-          value={email}
-          focusColor={colors.orange}
-          borderWidth={0.5}
-          placeholder={string.emailPlaceHolder}
-          notFocussedColor={colors.grayLight1}
-          customInputStyle={styles.inputContainerStyle}
-        />
+        <View style={{height: '10%'}}>
+          <CustomInput
+            setText={setEmailState}
+            value={email}
+            focusColor={colors.orange}
+            borderWidth={0.5}
+            onBlur={onEmailInputBlur}
+            placeholder={string.emailPlaceHolder}
+            notFocussedColor={colors.grayLight1}
+            customInputStyle={styles.inputContainerStyle}
+          />
+          {isValidEmail.status == false ? (
+            <Text style={{fontSize: 15, color: 'red'}}>{isValidEmail.msg}</Text>
+          ) : (
+            ''
+          )}
+        </View>
         <CustomButton
           buttonText={'SEND NEW PASSWORD'}
           onPress={() => {
-            navigation.navigate(ScreenNames.PROFILE);
+            const checkisValidEmail = validateEmail(email.trim());
+            setIsvalidEmail(checkisValidEmail);
+            if (checkisValidEmail.status)
+              navigation.navigate(ScreenNames.PROFILE);
           }}
           containerStyle={styles.buttonContainerStyle}
           textStyle={styles.buttonText}
