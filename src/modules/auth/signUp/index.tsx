@@ -12,14 +12,17 @@ import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {vh} from '@corporateFoods/utils/dimensions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {navigationRef} from '@corporateFoods/utils/navigationService';
+
 import {signUPFunction} from '../action';
-import Services from '@corporateFoods/utils/Services';
+
 import {
   vaildatePassword,
   validateEmail,
   validateName,
 } from '@corporateFoods/utils/validation';
+import {navigationRef} from '@corporateFoods/utils/navigationService';
+import Services from '@corporateFoods/utils/Services';
+import axios from 'axios';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -58,6 +61,27 @@ export default function SignUp() {
 
   const showBackButton: boolean =
     params?.showBackButton !== undefined ? params?.showBackButton : true;
+
+  // useEffect(() => {
+  //   Services.postApiCall(
+  //     '/api/signup',
+  //     {
+  //       name: 'Satyam Kumar Tiwari',
+  //       email: 'samtydg@gmail.com',
+  //       password: 'Test@123',
+  //       accountType: 1,
+  //       employeeId: 'AI95755',
+  //       companyName: 'Appinventiv',
+  //     },
+  //     (resp: any) => {
+  //       console.log('res', resp);
+  //     },
+  //     (error: any) => {
+  //       console.log('error', error);
+  //     },
+  //   );
+
+  // }, []);
 
   const onPressSignIn = () => {
     if (navigation.canGoBack()) {
