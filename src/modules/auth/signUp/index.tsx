@@ -14,6 +14,12 @@ import {vh} from '@corporateFoods/utils/dimensions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {navigationRef} from '@corporateFoods/utils/navigationService';
 import {signUPFunction} from '../action';
+import Services from '@corporateFoods/utils/Services';
+import {
+  vaildatePassword,
+  validateEmail,
+  validateName,
+} from '@corporateFoods/utils/validation';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -22,6 +28,21 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(true);
   const navigation: any = useNavigation();
   const params: any = useRoute()?.params;
+  const [isValidName, setIsvalidName] = useState({
+    status: true,
+    msg: '',
+    proceed: false,
+  });
+  const [isValidEmail, setIsvalidEmail] = useState({
+    status: true,
+    msg: '',
+    proceed: false,
+  });
+  const [isValidPassword, setIsValidPassword] = useState({
+    status: true,
+    msg: '',
+    proceed: false,
+  });
   const setEmailState = useCallback((value: string) => {
     setEmail(value);
   }, []);
@@ -94,48 +115,72 @@ export default function SignUp() {
       </View>
     );
   };
-
+  const onNameInputBlur = React.useCallback(() => {
+    const checkisValidName = validateName(email.trim());
+    setIsvalidName(checkisValidName);
+  }, [name]);
   const fullNameComponent = () => {
     return (
-      <View>
+      <View style={{height: '10%'}}>
         <Text style={styles.inputName}>{string.fullName}</Text>
         <CustomInput
           value={name}
           setText={setNameState}
           placeholder={string.fullName}
           borderWidth={0.5}
+          onBlur={onNameInputBlur}
           customInputStyle={styles.inputContainerStyle}
           focusColor={colors.orange}
           notFocussedColor={colors.grayLight1}
         />
+        {isValidName.status == false ? (
+          <Text style={{fontSize: 15, color: 'red'}}>{isValidName.msg}</Text>
+        ) : (
+          ''
+        )}
       </View>
     );
   };
+  const onEmailInputBlur = React.useCallback(() => {
+    const checkisValidEmail = validateEmail(email.trim());
+    setIsvalidEmail(checkisValidEmail);
+  }, [email]);
   const emailComponent = () => {
     return (
-      <View>
+      <View style={{height: '10%'}}>
         <Text style={styles.inputName}>{string.email}</Text>
         <CustomInput
           value={email}
           setText={setEmailState}
           placeholder={string.email}
           borderWidth={0.5}
+          onBlur={onEmailInputBlur}
           customInputStyle={styles.inputContainerStyle}
           focusColor={colors.orange}
           notFocussedColor={colors.grayLight1}
         />
+        {isValidEmail.status == false ? (
+          <Text style={{fontSize: 15, color: 'red'}}>{isValidEmail.msg}</Text>
+        ) : (
+          ''
+        )}
       </View>
     );
   };
+  const onPasswordBlur = React.useCallback(() => {
+    const checkisValidPassword = vaildatePassword(password.trim());
+    setIsValidPassword(checkisValidPassword);
+  }, [password]);
   const passwordComponent = () => {
     return (
-      <View>
+      <View style={{height: '10%'}}>
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}
           setText={setPasswordState}
           placeholder={string.password}
           borderWidth={0.5}
+          onBlur={onPasswordBlur}
           rightIcon={!showPassword ? image.password : image.hidePassword}
           rightIconContainerStyle={styles.eyeContainer}
           rightIconStyle={styles.eyeImage}
@@ -147,6 +192,13 @@ export default function SignUp() {
           secureTextInput={showPassword}
           maximumLength={16}
         />
+        {isValidPassword.status == false ? (
+          <Text style={{fontSize: 15, color: 'red'}}>
+            {isValidPassword.msg}
+          </Text>
+        ) : (
+          ''
+        )}
       </View>
     );
   };

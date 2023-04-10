@@ -40,7 +40,7 @@ const passwordSpecialRegex =
 
 export const validateName = (name: string) => {
   if (name.length === 0) {
-    return {status: true, msg: '', proceed: false};
+    return {status: false, msg: 'Name required', proceed: false};
   }
   if (name.length > 1 && name.length <= 50) {
     if (nameRegexMin2.test(name)) {
