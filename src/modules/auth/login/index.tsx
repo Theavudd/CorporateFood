@@ -60,7 +60,10 @@ const Login = () => {
     setEmail(value);
   }, []);
 
-  const onEmailInputBlur = React.useCallback(() => {}, []);
+  const onEmailInputBlur = React.useCallback(() => {
+    const checkisValidEmail = validateEmail(email.trim());
+    setIsvalidEmail(checkisValidEmail);
+  }, [email]);
 
   const emailComponent = () => {
     return (
@@ -93,6 +96,11 @@ const Login = () => {
     setShowPassword(!showPassword);
   }, [showPassword]);
 
+  const onPasswordBlur = React.useCallback(() => {
+    const checkisValidPassword = vaildatePassword(password.trim());
+    setIsValidPassword(checkisValidPassword);
+  }, [password]);
+
   const passwordComponent = () => {
     return (
       <View style={{height: '10%'}}>
@@ -100,6 +108,7 @@ const Login = () => {
         <CustomInput
           value={password}
           setText={setPasswordState}
+          onBlur={onPasswordBlur}
           placeholder={string.password}
           borderWidth={0.5}
           rightIcon={!showPassword ? image.password : image.hidePassword}
