@@ -1,5 +1,5 @@
 import styles from './styles';
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import image from '@corporateFoods/utils/image';
 import string from '@corporateFoods/utils/string';
 import {colors} from '@corporateFoods/utils/colors';
@@ -12,7 +12,7 @@ import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {vh} from '@corporateFoods/utils/dimensions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {dispatch, navigationRef} from '@corporateFoods/utils/navigationService';
+import {navigationRef} from '@corporateFoods/utils/navigationService';
 import {signUPFunction} from '../action';
 
 export default function SignUp() {
@@ -37,6 +37,27 @@ export default function SignUp() {
 
   const showBackButton: boolean =
     params?.showBackButton !== undefined ? params?.showBackButton : true;
+
+  // useEffect(() => {
+  //   Services.postApiCall(
+  //     '/api/signup',
+  //     {
+  //       name: 'Satyam Kumar Tiwari',
+  //       email: 'samtydg@gmail.com',
+  //       password: 'Test@123',
+  //       accountType: 1,
+  //       employeeId: 'AI95755',
+  //       companyName: 'Appinventiv',
+  //     },
+  //     (resp: any) => {
+  //       console.log('res', resp);
+  //     },
+  //     (error: any) => {
+  //       console.log('error', error);
+  //     },
+  //   );
+
+  // }, []);
 
   const onPressSignIn = () => {
     if (navigation.canGoBack()) {

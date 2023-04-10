@@ -21,10 +21,16 @@ import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Endpoints from '@corporateFoods/utils/Endpoints';
 import Services from '@corporateFoods/utils/Services';
+import {
+  vaildatePassword,
+  validateEmail,
+} from '@corporateFoods/utils/validation';
 
 const Login = () => {
   const navigation = useNavigation<any>();
   const [email, setEmail] = useState('');
+  const [isValidEmail, setIsvalidEmail] = useState({});
+  const [isvalidPassword, setIsValidPassword] = useState({});
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const params: any = useRoute()?.params;
@@ -48,7 +54,7 @@ const Login = () => {
 
   const emailComponent = () => {
     return (
-      <View>
+      <View style={{height: '10%'}}>
         <Text style={styles.inputName}>{string.email}</Text>
         <CustomInput
           value={email}
@@ -59,6 +65,11 @@ const Login = () => {
           focusColor={colors.orange}
           notFocussedColor={colors.grayLight1}
         />
+        {isValidEmail.status == false ? (
+          <Text style={{fontSize: 15, color: 'red'}}>{isValidEmail.msg}</Text>
+        ) : (
+          ''
+        )}
       </View>
     );
   };
@@ -73,7 +84,7 @@ const Login = () => {
 
   const passwordComponent = () => {
     return (
-      <View>
+      <View style={{height: '10%'}}>
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}
@@ -90,8 +101,21 @@ const Login = () => {
           notFocussedColor={colors.grayLight1}
           secureTextInput={showPassword}
         />
+        {isvalidPassword.status == false ? (
+          <Text style={{fontSize: 15, color: 'red'}}>
+            {isvalidPassword.msg}
+          </Text>
+        ) : (
+          ''
+        )}
       </View>
     );
+  };
+  const onPressValidation = () => {
+    const checkisValidEmail = validateEmail(email.trim());
+    setIsvalidEmail(checkisValidEmail);
+    const checkisValidPassowrd = vaildatePassword(password.trim());
+    setIsValidPassword(checkisValidPassowrd);
   };
 
   const socialSignInComponent = React.useCallback(() => {
@@ -145,7 +169,9 @@ const Login = () => {
             </TouchableOpacity>
             <CustomButton
               buttonText={string.LOGIN}
-              onPress={() => {}}
+              onPress={() => {
+                onPressValidation();
+              }}
               containerStyle={styles.buttonContainerStyle}
               textStyle={styles.buttonText}
             />
