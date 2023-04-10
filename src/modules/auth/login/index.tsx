@@ -1,5 +1,5 @@
 import {styles} from './styles';
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import fonts from '@corporateFoods/utils/fonts';
 import image from '@corporateFoods/utils/image';
 import string from '@corporateFoods/utils/string';
@@ -29,10 +29,18 @@ import {
 const Login = () => {
   const navigation = useNavigation<any>();
   const [email, setEmail] = useState('');
-  const [isValidEmail, setIsvalidEmail] = useState({});
-  const [isvalidPassword, setIsValidPassword] = useState({});
+  const [isValidEmail, setIsvalidEmail] = useState({
+    status: true,
+    msg: '',
+    proceed: false,
+  });
+  const [isValidPassword, setIsValidPassword] = useState({
+    status: true,
+    msg: '',
+    proceed: false,
+  });
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const params: any = useRoute()?.params;
 
   const showBackButton: boolean =
@@ -52,6 +60,8 @@ const Login = () => {
     setEmail(value);
   }, []);
 
+  const onEmailInputBlur = React.useCallback(() => {}, []);
+
   const emailComponent = () => {
     return (
       <View style={{height: '10%'}}>
@@ -59,6 +69,7 @@ const Login = () => {
         <CustomInput
           value={email}
           setText={setEmailState}
+          onBlur={onEmailInputBlur}
           placeholder={string.emailPlaceHolder}
           borderWidth={0.5}
           customInputStyle={styles.inputContainerStyle}
@@ -101,9 +112,9 @@ const Login = () => {
           notFocussedColor={colors.grayLight1}
           secureTextInput={showPassword}
         />
-        {isvalidPassword.status == false ? (
+        {isValidPassword.status == false ? (
           <Text style={{fontSize: 15, color: 'red'}}>
-            {isvalidPassword.msg}
+            {isValidPassword.msg}
           </Text>
         ) : (
           ''
@@ -111,12 +122,12 @@ const Login = () => {
       </View>
     );
   };
-  const onPressValidation = () => {
+  const onPressValidation = useCallback(() => {
     const checkisValidEmail = validateEmail(email.trim());
     setIsvalidEmail(checkisValidEmail);
     const checkisValidPassowrd = vaildatePassword(password.trim());
     setIsValidPassword(checkisValidPassowrd);
-  };
+  }, [email, password]);
 
   const socialSignInComponent = React.useCallback(() => {
     return (
@@ -169,9 +180,7 @@ const Login = () => {
             </TouchableOpacity>
             <CustomButton
               buttonText={string.LOGIN}
-              onPress={() => {
-                onPressValidation();
-              }}
+              onPress={onPressValidation}
               containerStyle={styles.buttonContainerStyle}
               textStyle={styles.buttonText}
             />

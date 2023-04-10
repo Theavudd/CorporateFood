@@ -127,16 +127,16 @@ export const vaildatePassword = (password: string) => {
         msg: 'Password should be atleast 8 charaters',
         proceed: false,
       };
-    } else if (password.length > 16) {
+    } else if (password.length > 20) {
       return {
         status: false,
-        msg: 'Password should not be more than 15 charaters',
+        msg: 'Password should not be more than 20 charaters',
         proceed: false,
       };
     } else {
       return {
         status: false,
-        msg: 'Invalid password  criteria',
+        msg: 'Password must contain 1 uppercase,1 lowercase,1 digit and a special character',
         proceed: false,
       };
     }

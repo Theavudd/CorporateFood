@@ -19,6 +19,8 @@ export interface CustomInputPropsType {
   borderWidth?: number;
   paddingHorizontal?: number;
   notFocussedColor?: string;
+  onFocus?: Function;
+  onBlur?: Function;
   takeIconsInsideBorder?: boolean;
   leftIcon?: ImageProps['source'];
   rightIcon?: ImageProps['source'];
@@ -53,6 +55,8 @@ const CustomInput = React.forwardRef(
       value,
       setText,
       leftIcon,
+      onFocus,
+      onBlur,
       rightIcon,
       selectionColor,
       onKeyPress = () => {},
@@ -89,6 +93,16 @@ const CustomInput = React.forwardRef(
       setFocused(!focused);
     };
 
+    const onFocusInput = () => {
+      setFocusedFunction();
+      onFocus && onFocus();
+    };
+
+    const onBlurInput = () => {
+      setFocusedFunction();
+      onBlur && onBlur();
+    };
+
     return (
       <View
         style={[
@@ -121,8 +135,8 @@ const CustomInput = React.forwardRef(
           placeholder={placeholder}
           maxLength={maximumLength}
           keyboardType={keyboardType}
-          onBlur={setFocusedFunction}
-          onFocus={setFocusedFunction}
+          onBlur={onBlurInput}
+          onFocus={onFocusInput}
           secureTextEntry={secureTextInput}
           autoCorrect={autoCorrect}
           autoCapitalize="none"
