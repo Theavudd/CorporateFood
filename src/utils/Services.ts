@@ -40,34 +40,34 @@ const $http = axios.create({
 /**
  * check error message from response and show message according to screen
  */
-$http.interceptors.response.use(
-  (config: any) => config,
-  (error: any) => {
-    if (
-      error?.message?.includes('403') ||
-      error?.message?.includes('401') || //Session expire
-      error?.message?.includes('498')
-    ) {
-      const route = navigationRef.current?.getCurrentRoute().name;
-
-      // if (
-      //   route !== ScreenNames.SignIn &&
-      //   route !== ScreenNames.ForgotPassword &&
-      //   route !== ScreenNames.SignUp &&
-      //   route !== ScreenNames.FINDACCOUNT &&
-      //   route !== ScreenNames.ForgotPassword
-      // ) {
-      //   handleApiError();
-      // } else {
-      if (!error?.message?.includes('401') && !error?.message?.includes('498'))
-        commonFunction.showSnackbar(error?.response?.data?.message);
-      // }
-    } else {
-      commonFunction.showSnackbar(error?.response?.data?.message);
-    }
-    return error as unknown;
-  },
-);
+// $http.interceptors.response.use(
+//   (config: any) => config,
+//   (error: any) => {
+//     // if (
+//     //   error?.message?.includes('403') ||
+//     //   error?.message?.includes('401') || //Session expire
+//     //   error?.message?.includes('498')
+//     // ) {
+//     // const route = navigationRef.current?.getCurrentRoute()?.name;
+//     // if (
+//     //   route !== ScreenNames.SignIn &&
+//     //   route !== ScreenNames.ForgotPassword &&
+//     //   route !== ScreenNames.SignUp &&
+//     //   route !== ScreenNames.FINDACCOUNT &&
+//     //   route !== ScreenNames.ForgotPassword
+//     // ) {
+//     //   handleApiError();
+//     // } else {
+//     // if (!error?.message?.includes('401') && !error?.message?.includes('498'))
+//     // commonFunction.showSnackbar(error?.response?.message);
+//     // }
+//     // } else {
+//     //   commonFunction.showSnackbar(error?.response?.message);
+//     // }
+//     // return error as unknown;
+//     return error as unknown;
+//   },
+// );
 
 /**
  * navigate to session expiry screen if error occurs
@@ -148,6 +148,7 @@ const postApiCall = (
   $http
     .post(endPoint, params)
     .then((response: any) => {
+      debugger;
       if (
         (response && response?.status === 200) ||
         (response && response?.data?.status === 200)
