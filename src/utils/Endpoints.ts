@@ -1,4 +1,4 @@
 export default {
-  signUp: '/api/users/signup',
   login: '/api/users/login',
+  signup: '/api/users/signup',
 };
