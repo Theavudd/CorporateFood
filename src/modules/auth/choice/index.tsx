@@ -15,13 +15,20 @@ import React, {useCallback, useState} from 'react';
 import AsyncImage from '@corporateFoods/components/asyncImage';
 import CustomInput from '@corporateFoods/components/customInput';
 import HideKeyboard from '@corporateFoods/components/hideKeyboard';
+import CustomButton from '@corporateFoods/components/customButton';
+import {useRoute} from '@react-navigation/native';
+import {signUPFunction} from '../action';
+import {useDispatch} from 'react-redux';
 
 const Choice = () => {
   const [id, setId] = useState('');
   const [userType, setUserType] = useState('');
-
+  const [company, setCompany] = useState({});
+  const Routes = useRoute();
+  const dispatch = useDispatch();
   const empType = userType === string.employee;
   const vendType = userType === string.vendor;
+  const {name, email, password}: any = Routes.params;
 
   const personTypeComponents = () => {
     return (
@@ -102,6 +109,7 @@ const Choice = () => {
           {text: 'Wipro'},
         ]}
         callback={(value: Object) => {
+          setCompany(value);
           Keyboard.dismiss();
         }}
       />
@@ -136,6 +144,25 @@ const Choice = () => {
           {personTypeComponents()}
           {empType && employeeIdComponent()}
           {dropBox()}
+          <CustomButton
+            buttonText={string.submit}
+            onPress={() => {
+              const params = {
+                name,
+                email,
+                password,
+                employeeId: id,
+                accountType: userType === 'Employee' ? 1 : 2,
+                companyName: company.text,
+              };
+              console.log('PARAMS', params);
+              signUPFunction(
+                params,
+                () => {},
+                () => {},
+              );
+            }}
+          />
         </View>
       </HideKeyboard>
     );

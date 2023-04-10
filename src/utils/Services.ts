@@ -11,6 +11,7 @@ const PlatformNumber = isAndroid ? 0 : 1;
 const ENV_DATA = {
   BASE_URL: Config.BASE_URL,
 };
+console.log('ghfhghj', ENV_DATA);
 
 const deviceId = commonFunction.getDeviceDetail();
 
@@ -78,15 +79,15 @@ const $http = axios.create({
 //   navigationRef.current.navigate(ScreenNames.SessionExpiry);
 // };
 
-// /**
-//  * add auth token and other details using request interceptors
-//  */
+/**
+ * add auth token and other details using request interceptors
+ */
 // $http.interceptors.request.use(
 //   (req: any) => {
 //     if (req?.headers) {
 //       const getState = store?.getState();
 //       if (getState) {
-//         const {authToken = '', pushToken = ''} = getState.Auth;
+//         const {authToken = '', pushToken = ''} = getState.AuthReducer;
 
 //         if (pushToken && pushToken.length > 0) {
 //           //@ts-ignore

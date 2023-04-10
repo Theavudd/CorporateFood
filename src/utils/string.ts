@@ -2,6 +2,7 @@ export default {
   login: 'Login',
   LOGIN: 'LOGIN',
   email: 'E-mail',
+  submit: 'Submit',
   vendor: 'Vendor',
   google: 'GOOGLE',
   signUp: 'Sign Up',

@@ -12,7 +12,8 @@ import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {vh} from '@corporateFoods/utils/dimensions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {navigationRef} from '@corporateFoods/utils/navigationService';
+import {dispatch, navigationRef} from '@corporateFoods/utils/navigationService';
+import {signUPFunction} from '../action';
 
 export default function SignUp() {
   const [name, setName] = useState('');
@@ -41,6 +42,15 @@ export default function SignUp() {
     if (navigation.canGoBack()) {
       navigation.goBack();
     } else navigation.navigate(ScreenNames.LOGIN);
+  };
+
+  const onSignUp = () => {
+    // navigation.navigate(ScreenNames.CHOICE, {
+    //   name,
+    //   email,
+    //   password,
+    // });
+    navigation.navigate(ScreenNames.VERIFICATION);
   };
 
   const socialSignInComponent = () => {
@@ -146,10 +156,7 @@ export default function SignUp() {
             {passwordComponent()}
             <CustomButton
               buttonText={string.SIGNUP}
-              onPress={() => {
-                navigation.navigate(ScreenNames.CHOICE);
-                // navigation.navigate(ScreenNames.VERIFICATION);
-              }}
+              onPress={onSignUp}
               containerStyle={styles.buttonContainerStyle}
               textStyle={styles.buttonText}
             />

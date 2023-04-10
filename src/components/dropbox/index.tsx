@@ -30,7 +30,8 @@ export default function DropBox(props: Props) {
       <TouchableOpacity
         style={styles.renderView}
         activeOpacity={0.9}
-        onPress={itemPressed}>
+        onPress={itemPressed}
+        key={index}>
         {item?.leftImage && <AsyncImage uri={item.leftImage} />}
         <Text style={styles.itemText}>{item.text}</Text>
         {item?.rightImage && <AsyncImage uri={item.rightImage} />}
@@ -69,6 +70,7 @@ export default function DropBox(props: Props) {
             styles.listContainer,
             showDropDown ? {borderColor: colors.orange} : {},
           ]}
+          showsVerticalScrollIndicator={false}
         />
       )}
     </>

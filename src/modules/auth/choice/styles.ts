@@ -6,7 +6,7 @@ import {SCREEN_HEIGHT, vh, vw} from '@corporateFoods/utils/dimensions';
 const styles = StyleSheet.create({
   mainView: {
     paddingHorizontal: vw(26),
-    minHeight: SCREEN_HEIGHT - vh(127),
+    flex: 1,
   },
   container: {
     flex: 1,
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     height: vh(120),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: '10%',
   },
   userTypeText: {
     fontFamily: fonts.Regular,
