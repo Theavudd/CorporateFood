@@ -4,16 +4,31 @@ import AsyncImage from '../asyncImage';
 import image from '@corporateFoods/utils/image';
 import {vh} from '@corporateFoods/utils/dimensions';
 import {colors} from '@corporateFoods/utils/colors';
-import {FlatList, Keyboard, Text, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Keyboard,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewProps,
+} from 'react-native';
 
 interface Props {
   data?: any;
   dropText?: string;
   callback?: Function;
+  containerStyle?: ViewProps['style'];
+  ListContainerStyle?: ViewProps['style'];
 }
 
 export default function DropBox(props: Props) {
-  const {dropText, data, callback = () => {}} = props;
+  const {
+    dropText,
+    data,
+    callback = () => {},
+    ListContainerStyle = {},
+    containerStyle = {},
+  } = props;
   const [selectedState, setSelectedState] = useState(-1);
   const [showDropDown, setShowDropDown] = useState(false);
 
@@ -28,7 +43,7 @@ export default function DropBox(props: Props) {
 
     return (
       <TouchableOpacity
-        style={styles.renderView}
+        style={[styles.renderView, containerStyle]}
         activeOpacity={0.9}
         onPress={itemPressed}
         key={index}>
@@ -39,7 +54,7 @@ export default function DropBox(props: Props) {
     );
   };
   return (
-    <>
+    <View style={[styles.containerStyle, containerStyle]}>
       <TouchableOpacity
         style={[
           styles.dropHead,
@@ -69,10 +84,11 @@ export default function DropBox(props: Props) {
           contentContainerStyle={[
             styles.listContainer,
             showDropDown ? {borderColor: colors.orange} : {},
+            ListContainerStyle,
           ]}
           showsVerticalScrollIndicator={false}
         />
       )}
-    </>
+    </View>
   );
 }

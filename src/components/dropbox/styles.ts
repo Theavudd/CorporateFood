@@ -42,5 +42,6 @@ const styles = StyleSheet.create({
     borderColor: colors.orange,
   },
   countrySelectorEmptyView: {width: 30},
+  containerStyle: {marginVertical: 20},
 });
 export default styles;

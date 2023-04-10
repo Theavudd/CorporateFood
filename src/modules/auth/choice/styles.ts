@@ -33,19 +33,18 @@ const styles = StyleSheet.create({
     fontFamily: fonts.Regular,
   },
   inputContainerStyle: {
-    marginBottom: '10%',
     borderRadius: vw(5),
   },
   selectedType: {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 7,
+      height: 2,
     },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
 
-    elevation: 15,
-    shadowRadius: 9.51,
-    shadowOpacity: 0.43,
+    elevation: 4,
     borderColor: colors.orange,
     backgroundColor: colors.darkWhite,
   },
@@ -54,6 +53,15 @@ const styles = StyleSheet.create({
     marginBottom: vh(10),
     fontFamily: fonts.Regular,
   },
+  dropBoxListContainer: {},
+  emailInputContainer: {marginTop: '7%'},
+  headerButtonContainer: {
+    height: vh(38),
+    marginHorizontal: 0,
+    borderRadius: vw(10),
+    backgroundColor: 'white',
+  },
+  headerLeftImageStyle: {height: '55%'},
 });
 
 export default styles;

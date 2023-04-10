@@ -16,16 +16,20 @@ import AsyncImage from '@corporateFoods/components/asyncImage';
 import CustomInput from '@corporateFoods/components/customInput';
 import HideKeyboard from '@corporateFoods/components/hideKeyboard';
 import CustomButton from '@corporateFoods/components/customButton';
-import {useRoute} from '@react-navigation/native';
 import {signUPFunction} from '../action';
 import {useDispatch} from 'react-redux';
+import HeaderComponent from '@corporateFoods/components/headerComponent';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 const Choice = () => {
   const [id, setId] = useState('');
   const [userType, setUserType] = useState('');
-  const [company, setCompany] = useState({});
+  const [company, setCompany] = useState({
+    text: '',
+  });
   const Routes = useRoute();
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const empType = userType === string.employee;
   const vendType = userType === string.vendor;
   const {name, email, password}: any = Routes.params;
@@ -108,10 +112,11 @@ const Choice = () => {
           {text: 'TCS'},
           {text: 'Wipro'},
         ]}
-        callback={(value: Object) => {
+        callback={(value: {text: string}) => {
           setCompany(value);
           Keyboard.dismiss();
         }}
+        ListContainerStyle={styles.dropBoxListContainer}
       />
     );
   };
@@ -122,7 +127,7 @@ const Choice = () => {
 
   const employeeIdComponent = () => {
     return (
-      <>
+      <View style={styles.emailInputContainer}>
         <Text style={styles.employeeId}>{string.employeeId}</Text>
         <CustomInput
           value={id}
@@ -133,14 +138,24 @@ const Choice = () => {
           notFocussedColor={colors.grayLight1}
           customInputStyle={styles.inputContainerStyle}
         />
-      </>
+      </View>
     );
+  };
+
+  const arrowPress = () => {
+    navigation.goBack();
   };
 
   const screenComponents = () => {
     return (
       <HideKeyboard>
         <View style={[styles.mainView]}>
+          <HeaderComponent
+            leftImage={image.back}
+            leftContainerStyle={styles.headerButtonContainer}
+            onLeftButtonPress={arrowPress}
+            leftImageContainerStyle={styles.headerLeftImageStyle}
+          />
           {personTypeComponents()}
           {empType && employeeIdComponent()}
           {dropBox()}
@@ -153,7 +168,7 @@ const Choice = () => {
                 password,
                 employeeId: id,
                 accountType: userType === 'Employee' ? 1 : 2,
-                companyName: company.text,
+                companyName: company?.text,
               };
               console.log('PARAMS', params);
               signUPFunction(

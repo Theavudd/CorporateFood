@@ -59,27 +59,6 @@ export default function SignUp() {
   const showBackButton: boolean =
     params?.showBackButton !== undefined ? params?.showBackButton : true;
 
-  // useEffect(() => {
-  //   Services.postApiCall(
-  //     '/api/signup',
-  //     {
-  //       name: 'Satyam Kumar Tiwari',
-  //       email: 'samtydg@gmail.com',
-  //       password: 'Test@123',
-  //       accountType: 1,
-  //       employeeId: 'AI95755',
-  //       companyName: 'Appinventiv',
-  //     },
-  //     (resp: any) => {
-  //       console.log('res', resp);
-  //     },
-  //     (error: any) => {
-  //       console.log('error', error);
-  //     },
-  //   );
-
-  // }, []);
-
   const onPressSignIn = () => {
     if (navigation.canGoBack()) {
       navigation.goBack();
@@ -207,6 +186,10 @@ export default function SignUp() {
     navigation.goBack();
   }, []);
 
+  const onSignupPress = () => {
+    navigation.navigate(ScreenNames.CHOICE, {name, email, password});
+  };
+
   const screenComponents = () => {
     return (
       <KeyboardAwareScrollView
@@ -229,7 +212,7 @@ export default function SignUp() {
             {passwordComponent()}
             <CustomButton
               buttonText={string.SIGNUP}
-              onPress={onSignUp}
+              onPress={onSignupPress}
               containerStyle={styles.buttonContainerStyle}
               textStyle={styles.buttonText}
             />
