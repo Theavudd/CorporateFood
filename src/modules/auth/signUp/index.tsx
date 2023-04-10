@@ -23,6 +23,11 @@ import {
 import {navigationRef} from '@corporateFoods/utils/navigationService';
 import Services from '@corporateFoods/utils/Services';
 import axios from 'axios';
+import {
+  vaildatePassword,
+  validateEmail,
+  validateName,
+} from '@corporateFoods/utils/validation';
 
 export default function SignUp() {
   const [name, setName] = useState('');
