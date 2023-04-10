@@ -82,7 +82,9 @@ const styles = StyleSheet.create({
     height: vh(38),
     borderRadius: vw(10),
   },
-  headerLeftImageStyle: {height: '40%'},
+  headerLeftImageStyle: {
+    height: '40%',
+  },
   inputContainerStyle: {
     borderRadius: vw(10),
     height: vh(50),
@@ -106,8 +108,8 @@ const styles = StyleSheet.create({
     color: colors.blackLight2,
   },
   resetView: {
-    justifyContent: 'center',
-    marginVertical: vh(40),
+    marginVertical: vh(30),
+    // marginTop: vh(20),
   },
   mainView: {flex: 1, paddingHorizontal: vw(26)},
 });
