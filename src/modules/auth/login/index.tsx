@@ -1,13 +1,11 @@
 import {styles} from './styles';
+import React, {useState} from 'react';
 import fonts from '@corporateFoods/utils/fonts';
 import image from '@corporateFoods/utils/image';
-import React, {useEffect, useState} from 'react';
 import string from '@corporateFoods/utils/string';
 import {vh, vw} from '@corporateFoods/utils/dimensions';
 import {colors} from '@corporateFoods/utils/colors';
-import Services from '@corporateFoods/utils/Services';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import Endpoints from '@corporateFoods/utils/Endpoints';
 import ScreenNames from '@corporateFoods/router/screenNames';
 import CustomInput from '@corporateFoods/components/customInput';
 import CustomButton from '@corporateFoods/components/customButton';
@@ -46,19 +44,6 @@ const Login = () => {
     setEmail(value);
   }, []);
 
-  useEffect(() => {
-    Services.postApiCall(
-      Endpoints.login,
-      {email: 'faizz@gmail.com', password: 'test@123'},
-      (res: any) => {
-        console.log('ressssss--------', res);
-      },
-      (error: any) => {
-        console.log('error', error);
-      },
-    );
-  }, []);
-
   const emailComponent = () => {
     return (
       <View>
@@ -90,22 +75,18 @@ const Login = () => {
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}
+          setText={setPasswordState}
+          placeholder={string.password}
           borderWidth={0.5}
           rightIcon={!showPassword ? image.password : image.hidePassword}
           rightIconContainerStyle={styles.eyeContainer}
           rightIconStyle={styles.eyeImage}
           onRightIconPress={onEyePress}
           takeIconsInsideBorder
-          setText={setPasswordState}
-          focusColor={colors.orange}
-          placeholder={string.password}
-          onRightIconPress={onEyePress}
-          secureTextInput={showPassword}
-          rightIconStyle={styles.eyeImage}
-          notFocussedColor={colors.grayLight1}
           containerStyle={styles.inputContainerStyle}
-          rightIconContainerStyle={styles.eyeContainer}
-          rightIcon={showPassword ? image.hidePassword : image.password}
+          focusColor={colors.orange}
+          notFocussedColor={colors.grayLight1}
+          secureTextInput={showPassword}
         />
       </View>
     );

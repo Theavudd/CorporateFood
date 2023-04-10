@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, {InternalAxiosRequestConfig} from 'axios';
 import ScreenNames from '../router/screenNames';
 import {Platform} from 'react-native';
 import commonFunction from './commonFunction';
@@ -79,33 +79,33 @@ $http.interceptors.response.use(
 /**
  * add auth token and other details using request interceptors
  */
-// $http.interceptors.request.use(
-//   (req: any) => {
-//     console.log('req', req);
-//     if (req?.headers) {
-//       const getState = store?.getState();
-//       if (getState) {
-//         const {authToken = '', pushToken = ''} = getState.AuthReducer;
-
-//         if (pushToken && pushToken.length > 0) {
-//           //@ts-ignore
-//           $http.defaults.headers['devicedetails'] = JSON.stringify({
-//             ...devicedetail,
-//             ...{deviceToken: pushToken},
-//           });
-//         }
-
-//         if (authToken && authToken.length > 0) {
-//           $http.defaults.headers.common.Authorization = `Bearer ${authToken}`;
-//         }
-//       }
-//     }
-//     return req as unknown;
-//   },
-//   (err: any) => {
-//     return err as unknown;
-//   },
-// );
+$http.interceptors.request.use(
+  (req: InternalAxiosRequestConfig) => {
+    if (req?.headers) {
+      const getState = store?.getState();
+      if (!req?.headers?.Authorisation) {
+        $http.defaults.headers.common.Authorization = `Bearer ${req?.headers?.basicauth}`;
+      }
+      if (getState) {
+        const {authToken = '', pushToken = ''} = getState?.AuthReducer;
+        if (pushToken && pushToken.length > 0) {
+          //@ts-ignore
+          $http.defaults.headers['devicedetails'] = JSON.stringify({
+            ...devicedetail,
+            ...{deviceToken: pushToken},
+          });
+        }
+        if (authToken && authToken.length > 0) {
+          $http.defaults.headers.common.Authorization = `Bearer ${authToken}`;
+        }
+      }
+    }
+    return req as InternalAxiosRequestConfig;
+  },
+  (err: any) => {
+    return err as unknown;
+  },
+);
 
 /**
  * user to set auth token in headers
