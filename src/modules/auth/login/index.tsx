@@ -134,8 +134,22 @@ const Login = () => {
   const onPressValidation = useCallback(() => {
     const checkisValidEmail = validateEmail(email.trim());
     setIsvalidEmail(checkisValidEmail);
-    const checkisValidPassowrd = vaildatePassword(password.trim());
-    setIsValidPassword(checkisValidPassowrd);
+    const checkisValidPassword = vaildatePassword(password.trim());
+    setIsValidPassword(checkisValidPassword);
+    if (checkisValidEmail.status && checkisValidPassword.status)
+      Services.postApiCall(
+        Endpoints.login,
+        {
+          email: 'sads@gmail.com',
+          password: 'Test@123',
+        },
+        (resp: any) => {
+          console.log('resp', resp);
+        },
+        (error: any) => {
+          console.log('error', error);
+        },
+      );
   }, [email, password]);
 
   const socialSignInComponent = React.useCallback(() => {

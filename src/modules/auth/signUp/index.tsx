@@ -95,9 +95,10 @@ export default function SignUp() {
     );
   };
   const onNameInputBlur = React.useCallback(() => {
-    const checkisValidName = validateName(email.trim());
+    const checkisValidName = validateName(name.trim());
     setIsvalidName(checkisValidName);
   }, [name]);
+
   const fullNameComponent = () => {
     return (
       <View style={{height: '10%'}}>
@@ -112,7 +113,7 @@ export default function SignUp() {
           focusColor={colors.orange}
           notFocussedColor={colors.grayLight1}
         />
-        {isValidName.status == false ? (
+        {!isValidName.status ? (
           <Text style={{fontSize: 15, color: 'red'}}>{isValidName.msg}</Text>
         ) : (
           ''
@@ -186,9 +187,21 @@ export default function SignUp() {
     navigation.goBack();
   }, []);
 
-  const onSignupPress = () => {
-    navigation.navigate(ScreenNames.CHOICE, {name, email, password});
-  };
+  const onSignupPress = useCallback(() => {
+    const checkisValidEmail = validateEmail(email.trim());
+    setIsvalidEmail(checkisValidEmail);
+    const checkisValidPassword = vaildatePassword(password.trim());
+    setIsValidPassword(checkisValidPassword);
+    const checkisValidName = validateName(name.trim());
+    setIsvalidName(checkisValidName);
+    if (
+      checkisValidEmail.status &&
+      checkisValidName.status &&
+      checkisValidPassword.status
+    ) {
+      navigation.navigate(ScreenNames.CHOICE, {name, email, password});
+    }
+  }, [email, password, name]);
 
   const screenComponents = () => {
     return (

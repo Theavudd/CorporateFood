@@ -34,7 +34,7 @@ function Router() {
   });
 
   const {token, isLoading} = useSelector((store: ReducersModal) => ({
-    token: store.AuthReducer.token,
+    token: store.AuthReducer.authToken,
     isLoading: store.SplashReducer.isLoading,
   }));
 

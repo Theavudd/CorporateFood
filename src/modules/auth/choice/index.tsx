@@ -28,7 +28,7 @@ const Choice = () => {
     text: '',
   });
   const Routes = useRoute();
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const navigation = useNavigation();
   const empType = userType === string.employee;
   const vendType = userType === string.vendor;
@@ -162,7 +162,7 @@ const Choice = () => {
           <CustomButton
             buttonText={string.submit}
             onPress={() => {
-              const params = {
+              const params: any = {
                 name,
                 email,
                 password,
@@ -170,11 +170,17 @@ const Choice = () => {
                 accountType: userType === 'Employee' ? 1 : 2,
                 companyName: company?.text,
               };
-              console.log('PARAMS', params);
-              signUPFunction(
-                params,
-                () => {},
-                () => {},
+              if (params.accountType === 2) delete params?.employeeId;
+              dispatch(
+                signUPFunction(
+                  params,
+                  (resp: any) => {
+                    console.log('resp', resp);
+                  },
+                  (error: any) => {
+                    console.log('error', error);
+                  },
+                ),
               );
             }}
           />

@@ -83,18 +83,17 @@ $http.interceptors.request.use(
   (req: InternalAxiosRequestConfig) => {
     if (req?.headers) {
       const getState = store?.getState();
-      if (!req?.headers?.Authorisation) {
-        $http.defaults.headers.common.Authorization = `Bearer ${req?.headers?.basicauth}`;
-      }
       if (getState) {
-        const {authToken = '', pushToken = ''} = getState?.AuthReducer;
-        if (pushToken && pushToken.length > 0) {
-          //@ts-ignore
-          $http.defaults.headers['devicedetails'] = JSON.stringify({
-            ...devicedetail,
-            ...{deviceToken: pushToken},
-          });
-        }
+        const {authToken = '', pushToken = ''} = getState.AuthReducer;
+
+        // if (pushToken && pushToken.length > 0) {
+        //   //@ts-ignore
+        //   $http.defaults.headers['devicedetails'] = JSON.stringify({
+        //     ...devicedetail,
+        //     ...{deviceToken: pushToken},
+        //   });
+        // }
+
         if (authToken && authToken.length > 0) {
           $http.defaults.headers.common.Authorization = `Bearer ${authToken}`;
         }
@@ -148,7 +147,6 @@ const postApiCall = (
   $http
     .post(endPoint, params)
     .then((response: any) => {
-      debugger;
       if (
         (response && response?.status === 200) ||
         (response && response?.data?.status === 200)
@@ -162,6 +160,7 @@ const postApiCall = (
       }
     })
     .catch((error: any) => {
+      console.log('error', error, Config);
       errorCallback && errorCallback(error?.response);
     });
 };

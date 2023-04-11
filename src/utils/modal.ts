@@ -4,7 +4,13 @@ export type ActionType = {
 };
 
 export class AuthModal {
-  token: string = '';
+  authToken: string = '';
+  name: string = '';
+  accountType: number = 1;
+  email: string = '';
+  employeeId: string = '';
+  companyName: string = '';
+  userId: string = '';
 }
 export class SplashModal {
   isLoading: boolean = true;
