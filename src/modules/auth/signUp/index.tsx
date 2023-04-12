@@ -8,7 +8,13 @@ import ScreenNames from '@corporateFoods/router/screenNames';
 import CustomInput from '@corporateFoods/components/customInput';
 import CustomButton from '@corporateFoods/components/customButton';
 import HideKeyboard from '@corporateFoods/components/hideKeyboard';
-import {ImageBackground, SafeAreaView, Text, View} from 'react-native';
+import {
+  ImageBackground,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {vh} from '@corporateFoods/utils/dimensions';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
@@ -111,7 +117,7 @@ export default function SignUp() {
 
   const fullNameComponent = () => {
     return (
-      <View style={{height: '12%'}}>
+      <View style={{height: '15%'}}>
         <Text style={styles.inputName}>{string.fullName}</Text>
         <CustomInput
           value={name}
@@ -137,7 +143,7 @@ export default function SignUp() {
   }, [email]);
   const emailComponent = () => {
     return (
-      <View style={{height: '12%'}}>
+      <View style={{height: '15%'}}>
         <Text style={styles.inputName}>{string.email}</Text>
         <CustomInput
           value={email}
@@ -163,7 +169,7 @@ export default function SignUp() {
   }, [password]);
   const passwordComponent = () => {
     return (
-      <View style={{height: '12%'}}>
+      <View style={{height: '15%'}}>
         <Text style={styles.inputName}>{string.password}</Text>
         <CustomInput
           value={password}
