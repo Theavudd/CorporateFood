@@ -10,6 +10,7 @@ import React from 'react';
 import {styles} from './styles';
 import AsyncImage from '../asyncImage';
 import Images from '../../utils/image';
+import {colors} from '@corporateFoods/utils/colors';
 
 interface Props {
   buttonText?: string;
@@ -22,6 +23,7 @@ interface Props {
   extraRightImageStyle?: ImageStyle;
   extraLeftImageContainerStyle?: ViewStyle;
   extraRightImageContainerStyle?: ViewStyle;
+  disabled?: boolean;
 }
 
 function CustomButton({
@@ -33,6 +35,7 @@ function CustomButton({
   textStyle,
   extraLeftImageStyle,
   extraRightImageStyle,
+  disabled = false,
   extraLeftImageContainerStyle,
   extraRightImageContainerStyle,
 }: Props) {
@@ -40,7 +43,12 @@ function CustomButton({
     <TouchableOpacity
       activeOpacity={0.9}
       onPress={onPress}
-      style={[styles.container, containerStyle]}>
+      disabled={disabled}
+      style={[
+        styles.container,
+        containerStyle,
+        disabled && {backgroundColor: colors.grayLight},
+      ]}>
       {leftImage && (
         <AsyncImage
           localImage={leftImage}

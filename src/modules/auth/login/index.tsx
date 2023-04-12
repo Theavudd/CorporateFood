@@ -19,12 +19,14 @@ import {
 } from 'react-native';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import Endpoints from '@corporateFoods/utils/Endpoints';
-import Services from '@corporateFoods/utils/Services';
 import {
   vaildatePassword,
   validateEmail,
 } from '@corporateFoods/utils/validation';
+import Loader from '@corporateFoods/components/loader';
+import {useDispatch} from 'react-redux';
+import {userLogin} from '../action';
+import commonFunction from '@corporateFoods/utils/commonFunction';
 
 const Login = () => {
   const navigation = useNavigation<any>();
@@ -34,6 +36,7 @@ const Login = () => {
     msg: '',
     proceed: false,
   });
+  const [loading, setLoading] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState({
     status: true,
     msg: '',
@@ -42,6 +45,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(true);
   const params: any = useRoute()?.params;
+  const dispatch: any = useDispatch();
 
   const showBackButton: boolean =
     params?.showBackButton !== undefined ? params?.showBackButton : true;
@@ -131,25 +135,32 @@ const Login = () => {
       </View>
     );
   };
-  const onPressValidation = useCallback(() => {
+  const onLoginValidation = useCallback(() => {
     const checkisValidEmail = validateEmail(email.trim());
     setIsvalidEmail(checkisValidEmail);
     const checkisValidPassword = vaildatePassword(password.trim());
     setIsValidPassword(checkisValidPassword);
-    if (checkisValidEmail.status && checkisValidPassword.status)
-      Services.postApiCall(
-        Endpoints.login,
-        {
-          email: 'sads@gmail.com',
-          password: 'Test@123',
-        },
-        (resp: any) => {
-          console.log('resp', resp);
-        },
-        (error: any) => {
-          console.log('error', error);
-        },
+    if (checkisValidEmail.status && checkisValidPassword.status) {
+      let params = {
+        email,
+        password,
+      };
+      setLoading(true);
+      dispatch(
+        userLogin(
+          params,
+          (res: any) => {
+            setLoading(false);
+            console.log('res', res);
+          },
+          (err: any) => {
+            setLoading(false);
+            console.log('failed', err);
+            commonFunction.showSnackbar(err?.message);
+          },
+        ),
       );
+    }
   }, [email, password]);
 
   const socialSignInComponent = React.useCallback(() => {
@@ -176,6 +187,10 @@ const Login = () => {
     );
   }, []);
 
+  const onForgotPasswordPress = () => {
+    navigation.navigate(ScreenNames.RESET);
+  };
+
   const screenComponents = () => {
     return (
       <KeyboardAwareScrollView
@@ -195,15 +210,12 @@ const Login = () => {
             <Text style={styles.login}>{string.login}</Text>
             {emailComponent()}
             {passwordComponent()}
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(ScreenNames.RESET);
-              }}>
+            <TouchableOpacity onPress={onForgotPasswordPress}>
               <Text style={styles.forgotPassword}>{string.forgotPassword}</Text>
             </TouchableOpacity>
             <CustomButton
               buttonText={string.LOGIN}
-              onPress={onPressValidation}
+              onPress={onLoginValidation}
               containerStyle={styles.buttonContainerStyle}
               textStyle={styles.buttonText}
             />
@@ -225,6 +237,7 @@ const Login = () => {
       source={image.backgroundWrapper}
       resizeMode={'stretch'}>
       <SafeAreaView style={styles.safeView}>{screenComponents()}</SafeAreaView>
+      {loading && <Loader />}
     </ImageBackground>
   );
 };

@@ -16,10 +16,13 @@ import AsyncImage from '@corporateFoods/components/asyncImage';
 import CustomInput from '@corporateFoods/components/customInput';
 import HideKeyboard from '@corporateFoods/components/hideKeyboard';
 import CustomButton from '@corporateFoods/components/customButton';
-import {signUPFunction} from '../action';
+import {userSignup} from '../action';
 import {useDispatch} from 'react-redux';
 import HeaderComponent from '@corporateFoods/components/headerComponent';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import commonFunction from '@corporateFoods/utils/commonFunction';
+import Loader from '@corporateFoods/components/loader';
+import {validateEmployeeId} from '@corporateFoods/utils/validation';
 
 const Choice = () => {
   const [id, setId] = useState('');
@@ -27,12 +30,54 @@ const Choice = () => {
   const [company, setCompany] = useState({
     text: '',
   });
+  const [loading, setLoading] = useState(false);
   const Routes = useRoute();
   const dispatch: any = useDispatch();
   const navigation = useNavigation();
   const empType = userType === string.employee;
   const vendType = userType === string.vendor;
   const {name, email, password}: any = Routes.params;
+  const [isValidEmployeeId, setIsValidEmployeeId] = useState({
+    status: false,
+    msg: '',
+  });
+
+  const onSignupPress = () => {
+    let isValid: any;
+    if (userType === 'Employee') {
+      isValid = validateEmployeeId(id);
+      setIsValidEmployeeId(isValid);
+    } else {
+      isValid = {
+        status: true,
+        msg: '',
+      };
+    }
+    if (isValid.status) {
+      setLoading(true);
+      const params: any = {
+        name,
+        email,
+        password,
+        employeeId: id,
+        accountType: userType === 'Employee' ? 1 : 2,
+        companyName: company?.text,
+      };
+      if (params.accountType === 2) delete params?.employeeId;
+      dispatch(
+        userSignup(
+          params,
+          (resp: any) => {
+            setLoading(false);
+          },
+          (error: any) => {
+            setLoading(false);
+            commonFunction.showSnackbar(error?.message);
+          },
+        ),
+      );
+    }
+  };
 
   const personTypeComponents = () => {
     return (
@@ -138,12 +183,28 @@ const Choice = () => {
           notFocussedColor={colors.grayLight1}
           customInputStyle={styles.inputContainerStyle}
         />
+        {!isValidEmployeeId?.status ? (
+          <Text style={styles.errorMsg}>{isValidEmployeeId?.msg}</Text>
+        ) : (
+          ''
+        )}
       </View>
     );
   };
 
   const arrowPress = () => {
     navigation.goBack();
+  };
+
+  const checkDisability: () => boolean = () => {
+    if (userType === '') {
+      return true;
+    } else if (company.text == '') {
+      return true;
+    } else if (id.length < 3 && userType == string.employee) {
+      return true;
+    }
+    return false;
   };
 
   const screenComponents = () => {
@@ -161,28 +222,8 @@ const Choice = () => {
           {dropBox()}
           <CustomButton
             buttonText={string.submit}
-            onPress={() => {
-              const params: any = {
-                name,
-                email,
-                password,
-                employeeId: id,
-                accountType: userType === 'Employee' ? 1 : 2,
-                companyName: company?.text,
-              };
-              if (params.accountType === 2) delete params?.employeeId;
-              dispatch(
-                signUPFunction(
-                  params,
-                  (resp: any) => {
-                    console.log('resp', resp);
-                  },
-                  (error: any) => {
-                    console.log('error', error);
-                  },
-                ),
-              );
-            }}
+            disabled={checkDisability()}
+            onPress={onSignupPress}
           />
         </View>
       </HideKeyboard>
@@ -195,6 +236,7 @@ const Choice = () => {
       source={image.backgroundWrapper}
       resizeMode={'stretch'}>
       <SafeAreaView style={styles.safeView}>{screenComponents()}</SafeAreaView>
+      {loading && <Loader />}
     </ImageBackground>
   );
 };

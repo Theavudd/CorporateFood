@@ -113,6 +113,18 @@ export const validateEmail = (email: string) => {
     return {status: false, msg: 'Email id is not valid', proceed: false};
   }
 };
+export const validateEmployeeId = (empId: string) => {
+  if (empId.length === 0) {
+    return {status: false, msg: 'Employee Id is required'};
+  } else if (empId.length < 3) {
+    return {
+      status: false,
+      msg: 'Employee Id cannot be less than 3 characters',
+    };
+  } else {
+    return {status: true, msg: ''};
+  }
+};
 
 export const vaildatePassword = (password: string) => {
   if (password.length === 0) {

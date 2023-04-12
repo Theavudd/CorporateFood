@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   headerLeftImageStyle: {height: '55%'},
+  errorMsg: {fontSize: 15, color: 'red'},
 });
 
 export default styles;
