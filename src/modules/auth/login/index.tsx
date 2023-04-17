@@ -156,7 +156,7 @@ const Login = () => {
           (err: any) => {
             setLoading(false);
             console.log('failed', err);
-            commonFunction.showSnackbar(err?.message);
+            commonFunction.showSnackbar(err?.data?.message);
           },
         ),
       );
