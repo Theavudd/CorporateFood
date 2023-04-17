@@ -3,7 +3,7 @@ import Lottie from 'lottie-react-native';
 import {View, StyleSheet} from 'react-native';
 import {colors} from '@corporateFoods/utils/colors';
 
-const LottieJSON = '../assets/images/loader.json';
+const LottieJSON = '../assets/images/load.json';
 
 export default function Loader() {
   return (
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   logoStyle: {
-    height: 200,
-    width: 200,
+    height: 120,
+    width: 120,
     marginBottom: 100,
     // opacity: 0.95,
   },

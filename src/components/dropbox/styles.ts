@@ -30,18 +30,30 @@ const styles = StyleSheet.create({
   },
   dropImageContainer: {height: vh(15), width: vh(15)},
   listContainer: {
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-    borderColor: colors.grayLight1,
+    // borderWidth: 1,
+    // borderTopWidth: 0,
+    // borderBottomLeftRadius: 5,
+    // borderBottomRightRadius: 5,
+    // borderColor: colors.grayLight1,
   },
   selectCompanyContainer: {
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
     borderColor: colors.orange,
   },
+  selectCompanyContainer1: {
+    borderColor: colors.orange,
+    borderWidth: 1,
+    borderRadius: vh(5),
+  },
   countrySelectorEmptyView: {width: 30},
-  containerStyle: {marginVertical: 20},
+  containerStyle: {
+    marginVertical: 20,
+    // borderWidth: 1,
+    // borderColor: colors.orangeLight,
+  },
 });
 export default styles;

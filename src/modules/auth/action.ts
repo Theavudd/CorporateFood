@@ -42,3 +42,23 @@ export const userLogin = (
     );
   };
 };
+
+export const resetPassword = (
+  params: any,
+  successCallback: (res: any) => void,
+  failureCallback: (err: any) => void,
+) => {
+  return (dispatch: Dispatch) => {
+    Services.postApiCall(
+      Endpoints.resetPassword,
+      params,
+      (res: any) => {
+        dispatch({type: SET_DATA, payload: {...res?.data}});
+        successCallback(res);
+      },
+      (err: any) => {
+        failureCallback(err);
+      },
+    );
+  };
+};

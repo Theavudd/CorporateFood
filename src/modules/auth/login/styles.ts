@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   mainView: {
     paddingHorizontal: vw(26),
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     minHeight: SCREEN_HEIGHT - vh(127),
   },
   safeView: {

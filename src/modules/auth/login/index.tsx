@@ -225,7 +225,7 @@ const Login = () => {
                 {string.signUp}
               </Text>
             </Text>
-            {socialSignInComponent()}
+            {/* {socialSignInComponent()} */}
           </View>
         </HideKeyboard>
       </KeyboardAwareScrollView>
