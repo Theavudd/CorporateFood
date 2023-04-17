@@ -9,6 +9,7 @@ export default {
   SIGNUP: 'SIGN UP',
   employee: 'Employee',
   password: 'Password',
+  phoneNo: 'Phone Number',
   fullName: 'Full Name',
   welcomeTo: 'Welcome to',
   employeeId: 'Employee Id',

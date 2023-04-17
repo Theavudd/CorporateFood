@@ -54,7 +54,13 @@ export default function DropBox(props: Props) {
     );
   };
   return (
-    <View style={[styles.containerStyle, containerStyle]}>
+    <View
+      style={[
+        styles.containerStyle,
+        showDropDown ? styles.selectCompanyContainer1 : {},
+        ,
+        containerStyle,
+      ]}>
       <TouchableOpacity
         style={[
           styles.dropHead,
@@ -79,11 +85,12 @@ export default function DropBox(props: Props) {
         <FlatList
           data={data}
           bounces={false}
+          style={{maxHeight: vh(220)}}
           scrollEnabled
           renderItem={renderItem}
           contentContainerStyle={[
             styles.listContainer,
-            showDropDown ? {borderColor: colors.orange} : {},
+            // showDropDown ? {borderColor: colors.orange} : {},
             ListContainerStyle,
           ]}
           showsVerticalScrollIndicator={false}

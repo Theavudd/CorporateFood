@@ -136,6 +136,7 @@ const Choice = () => {
 
   const dropBox = () => {
     return (
+      // <SafeAreaView>
       <DropBox
         dropText={string.selectCompany}
         data={[
@@ -163,6 +164,7 @@ const Choice = () => {
         }}
         ListContainerStyle={styles.dropBoxListContainer}
       />
+      // </SafeAreaView>
     );
   };
 

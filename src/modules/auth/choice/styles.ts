@@ -53,7 +53,9 @@ const styles = StyleSheet.create({
     marginBottom: vh(10),
     fontFamily: fonts.Regular,
   },
-  dropBoxListContainer: {},
+  dropBoxListContainer: {
+    // minHeight: vh(180),
+  },
   emailInputContainer: {marginTop: '7%'},
   headerButtonContainer: {
     height: vh(38),

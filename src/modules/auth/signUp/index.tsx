@@ -236,7 +236,7 @@ export default function SignUp() {
                 {string.login}
               </Text>
             </Text>
-            {socialSignInComponent()}
+            {/* {socialSignInComponent()} */}
           </View>
         </HideKeyboard>
       </KeyboardAwareScrollView>

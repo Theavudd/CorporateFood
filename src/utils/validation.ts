@@ -156,7 +156,7 @@ export const vaildatePassword = (password: string) => {
 };
 export const vaildatePhoneNumber = (phone: string) => {
   if (phone.length === 0) {
-    return {status: true, msg: '', proceed: false};
+    return {status: false, msg: 'Phone Number required', proceed: false};
   }
   if (mobileNumberRegex.test(phone)) {
     return {status: true, msg: '', proceed: true};
