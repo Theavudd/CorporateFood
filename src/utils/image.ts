@@ -13,4 +13,10 @@ export default {
   vendorDisable: require('../assets/images/vendorDisable.png'),
   vendorEnable: require('../assets/images/vendorEnable.png'),
   dropUp: require('../assets/images/dropUp.png'),
+  bell: require('../assets/images/bell.png'),
+  home: require('../assets/images/home.png'),
+  user: require('../assets/images/user.png'),
+  help: require('../assets/images/help.png'),
+
+  settings: require('../assets/images/settings.png'),
 };

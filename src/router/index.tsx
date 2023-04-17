@@ -9,7 +9,7 @@ import {
 } from '@react-navigation/native';
 import SplashScreen from '../modules/splash';
 import ScreenNames from './screenNames';
-import {InteractionManager, useColorScheme} from 'react-native';
+import {Image, InteractionManager, View, useColorScheme} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import WelcomeScreen from '../modules/welcome';
 import Login from '../modules/auth/login';
@@ -22,6 +22,11 @@ import Home from '@corporateFoods/modules/home';
 import commonFunction from '@corporateFoods/utils/commonFunction';
 import ProfileScreen from '@corporateFoods/modules/profile';
 import Choice from '@corporateFoods/modules/auth/choice';
+import Notification from '@corporateFoods/modules/notification';
+import Setting from '@corporateFoods/modules/setting';
+import Help from '@corporateFoods/modules/help';
+import image from '@corporateFoods/utils/image';
+import BottomTabNav from './bottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
 const screenOptions = {headerShown: false};
@@ -62,10 +67,10 @@ function Router() {
               name={ScreenNames.VERIFICATION}
               component={Verification}
             />
-            <Stack.Screen
+            {/* <Stack.Screen
               name={ScreenNames.PROFILE}
               component={ProfileScreen}
-            />
+            /> */}
           </>
         ) : (
           <Stack.Screen name={ScreenNames.BOTTOM} component={BottomTabNav} />
@@ -75,14 +80,66 @@ function Router() {
   );
 }
 
-const BottomTab = createBottomTabNavigator();
+// const BottomTab = createBottomTabNavigator();
 
-function BottomTabNav() {
-  return (
-    <BottomTab.Navigator screenOptions={screenOptions}>
-      <BottomTab.Screen name={ScreenNames.HOME} component={Home} />
-    </BottomTab.Navigator>
-  );
-}
+// function BottomTabNav() {
+//   return (
+//     <BottomTab.Navigator screenOptions={screenOptions}>
+//       <BottomTab.Screen
+//         name={ScreenNames.HOME}
+//         component={Home}
+//         options={{
+//           tabBarIcon: ({focused}) => {
+//             return (
+//               <View>
+//                 <Image
+//                   source={image.home}
+//                   resizeMode="contain"
+//                   style={{width: 25}}
+//                 />
+//               </View>
+//             );
+//           },
+//         }}
+//       />
+//       <BottomTab.Screen
+//         name={ScreenNames.NOTIFICATION}
+//         component={Notification}
+//         options={{
+//           tabBarIcon: ({focused}) => {
+//             return (
+//               <View>
+//                 <Image
+//                   source={image.bell}
+//                   resizeMode="contain"
+//                   style={{width: 25}}
+//                 />
+//               </View>
+//             );
+//           },
+//         }}
+//       />
+//       <BottomTab.Screen
+//         name={ScreenNames.PROFILE}
+//         component={ProfileScreen}
+//         options={{
+//           tabBarIcon: ({focused}) => {
+//             return (
+//               <View>
+//                 <Image
+//                   source={image.user}
+//                   resizeMode="contain"
+//                   style={{width: 25}}
+//                 />
+//               </View>
+//             );
+//           },
+//         }}
+//       />
+//       <BottomTab.Screen name={ScreenNames.SETTING} component={Setting} />
+//       <BottomTab.Screen name={ScreenNames.HELP} component={Help} />
+//     </BottomTab.Navigator>
+//   );
+// }
 
 export default Router;

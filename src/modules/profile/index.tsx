@@ -94,7 +94,7 @@ import {
 } from '@corporateFoods/utils/validation';
 import fonts from '@corporateFoods/utils/fonts';
 
-export default function SignUp() {
+export default function ProfileScreen() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
